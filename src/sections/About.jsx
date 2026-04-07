@@ -21,7 +21,7 @@ export default function About() {
             between internal services and external APIs with precision and control.
           </p>
           <p className="about__body">
-            Beyond code, I'm fluent in English (Cambridge C2) and I am always looking to grow — whether that means picking
+            Beyond code, I'm fluent in English (Cambridge C2), fond of piano and classical music and I am always looking to grow — whether that means picking
             up a new technology or relocating for the right opportunity.
           </p>
           <div className="about__links">
