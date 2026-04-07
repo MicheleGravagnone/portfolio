@@ -21,8 +21,7 @@ export default function About() {
             between internal services and external APIs with precision and control.
           </p>
           <p className="about__body">
-            Beyond code, I'm fluent in English (Cambridge C2), love classical studies from
-            my Liceo background and am always looking to grow — whether that means picking
+            Beyond code, I'm fluent in English (Cambridge C2) and I am always looking to grow — whether that means picking
             up a new technology or relocating for the right opportunity.
           </p>
           <div className="about__links">
@@ -47,8 +46,7 @@ export default function About() {
           <div className="about__card glass-card">
             <div className="about__card-icon">🎓</div>
             <h3>Education</h3>
-            <p>BSc Computer Engineering, University of Salerno 
-              (2021–2026)</p>
+            <p>BSc Computer Engineering, University of Salerno <br /> (2021–2026)</p>
             <span className="tag">Summa Cum Laude — Liceo Classico</span>
           </div>
           <div className="about__card glass-card">
