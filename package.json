@@ -2,7 +2,7 @@
   "name": "michele-gravagnone-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/MicheleGravagnone/portfolio.git",
+  "homepage": "https://michelegravagnone.github.io/portfolio",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
