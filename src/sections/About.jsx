@@ -47,7 +47,8 @@ export default function About() {
           <div className="about__card glass-card">
             <div className="about__card-icon">🎓</div>
             <h3>Education</h3>
-            <p>BSc Computer Engineering, University of Salerno (2021–2026)</p>
+            <p>BSc Computer Engineering, University of Salerno 
+              (2021–2026)</p>
             <span className="tag">Summa Cum Laude — Liceo Classico</span>
           </div>
           <div className="about__card glass-card">
