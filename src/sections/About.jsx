@@ -46,7 +46,7 @@ export default function About() {
           <div className="about__card glass-card">
             <div className="about__card-icon">🎓</div>
             <h3>Education</h3>
-            <p>BSc Computer Engineering, University of Salerno <br /> (2021–2026)</p>
+            <p>BSc Computer Engineering, University of Salerno <br /> (2021–2026) <br /> Classical High School - Graduated with Honors</p>
           </div>
           <div className="about__card glass-card">
             <div className="about__card-icon">🌍</div>
