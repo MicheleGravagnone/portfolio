@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MicheleGravagnone/portfolio.git/static/css/main.7a57da1c.css",
+    "main.js": "/MicheleGravagnone/portfolio.git/static/js/main.b1ad4e38.js",
+    "index.html": "/MicheleGravagnone/portfolio.git/index.html",
+    "main.7a57da1c.css.map": "/MicheleGravagnone/portfolio.git/static/css/main.7a57da1c.css.map",
+    "main.b1ad4e38.js.map": "/MicheleGravagnone/portfolio.git/static/js/main.b1ad4e38.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a57da1c.css",
+    "static/js/main.b1ad4e38.js"
+  ]
+}
