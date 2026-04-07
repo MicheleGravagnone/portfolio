@@ -52,7 +52,7 @@ export default function About() {
           <div className="about__card glass-card">
             <div className="about__card-icon">🌍</div>
             <h3>Languages</h3>
-            <p>Italian (native) · English C2 certified by Cambridge University Press</p>
+            <p>English C2 certified by Cambridge University Press <br /> Italian (native)</p>
           </div>
           <div className="about__card glass-card">
             <div className="about__card-icon">✈️</div>
