@@ -32,7 +32,7 @@ export default function Hero() {
 
         <p className="hero__subtitle">
           Software Engineer based in Naples, Italy. Computer Engineering graduate
-          with a focus on backend systems, distributed architectures and API orchestration.
+          with a focus on backend systems and distributed architectures / cloud solutions.
         </p>
 
         <div className="hero__actions">
@@ -121,7 +121,7 @@ export class MCPController {
           <span>TypeScript</span>
         </div>
         <div className="hero__floating-badge hero__floating-badge--2">
-          <span>Docker</span>
+          <span>Cloud</span>
         </div>
         <div className="hero__floating-badge hero__floating-badge--3">
           <span>Microservices</span>

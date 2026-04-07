@@ -31,7 +31,7 @@ export default function Skills() {
         <p className="section-label">Skills</p>
         <h2 className="section-title">My toolbox</h2>
         <p className="section-subtitle">
-          Technologies and concepts I work with — from low-level C to distributed cloud-native systems.
+          Technologies and concepts I worked with — from low-level C to distributed cloud-native systems.
         </p>
       </div>
 

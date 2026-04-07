@@ -6,7 +6,7 @@ const projects = [
     title: 'MCP-Based API Orchestration Server',
     description:
       'Backend server built on the Model Context Protocol to orchestrate API interactions within a microservices architecture. Enables controlled access to internal services through tool definition, with automatic communication between distributed components.',
-    tags: ['TypeScript', 'Node.js', 'Docker', 'Kubernetes', 'REST APIs', 'MCP'],
+    tags: ['TypeScript', 'Node.js', 'Docker', 'Kubernetes', 'REST APIs'],
     context: 'BS Thesis · Università di Salerno × Lanificio Digitale',
     featured: true,
     icon: '⚙️',
@@ -33,7 +33,7 @@ const projects = [
   {
     title: 'Car Dealership Web Store',
     description:
-      'Full-stack web application for a car dealership. Features product catalog, user authentication, and personal dashboard. Backend in PHP + PostgreSQL, frontend in HTML/CSS/JavaScript.',
+      'Full-stack web application for a car dealership. Features product catalog, user authentication and personal dashboard. Backend in PHP + PostgreSQL, frontend in HTML/CSS/JavaScript.',
     tags: ['PHP', 'PostgreSQL', 'JavaScript', 'HTML', 'CSS'],
     context: 'Web Technologies course',
     icon: '🛒',
@@ -51,7 +51,7 @@ export default function Projects() {
         <h2 className="section-title">Things I've built</h2>
         <p className="section-subtitle">
           A selection of academic and personal projects spanning backend engineering,
-          machine learning, and full-stack development.
+          machine learning and full-stack development.
         </p>
       </div>
 
