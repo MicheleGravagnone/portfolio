@@ -42,14 +42,14 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 18px;
 }
 
 body {
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -73,18 +73,24 @@ body {
   background: radial-gradient(circle, rgba(229, 164, 66, 0.2) 0%, transparent 70%); /* Amber Glow */
   top: -100px;
   right: -50px;
+  width: 800px;
+  height: 800px
 }
 
 .orb-2 {
   background: radial-gradient(circle, rgba(107, 142, 35, 0.15) 0%, transparent 70%); /* Forest Green */
   bottom: 100px;
   left: -100px;
+  width: 700px;
+  height: 700px;
 }
 
 .orb-3 {
   background: radial-gradient(circle, rgba(139, 69, 19, 0.1) 0%, transparent 70%); /* Wood Brown */
   top: 40%;
   right: 15%;
+  width: 600px;
+  height: 600px;
 }
 
 @keyframes floatOrb {
@@ -116,8 +122,8 @@ main {
 
 /* ── Section layout ───────────────────────────────────────────── */
 .section {
-  padding: 100px 0;
-  max-width: 1100px;
+  padding: 120px 0;
+  max-width: 1300px;
   margin: 0 auto;
   padding-left: 24px;
   padding-right: 24px;
@@ -191,13 +197,18 @@ main {
 /* ── Scrollbar ────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(45, 212, 191, 0.15); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(45, 212, 191, 0.28); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ── Selection ────────────────────────────────────────────────── */
 ::selection {
-  background: rgba(45, 212, 191, 0.28);
+  background: var(--accent);
   color: white;
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {

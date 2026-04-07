@@ -7,7 +7,7 @@ const projects = [
     description:
       'Backend server built on the Model Context Protocol to orchestrate API interactions within a microservices architecture. Enables controlled access to internal services through tool definition, with automatic communication between distributed components.',
     tags: ['TypeScript', 'Node.js', 'Docker', 'Kubernetes', 'REST APIs'],
-    context: 'BS Thesis · Università di Salerno × Lanificio Digitale',
+    context: 'BS Thesis · University of Salerno × Lanificio Digitale',
     featured: true,
     icon: '⚙️',
     accent: '#4f8eff',

@@ -2,8 +2,8 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 24px 80px;
-  max-width: 1100px;
+  padding: 160px 40px 100px;
+  max-width: 1300px;
   margin: 0 auto;
   gap: 60px;
   position: relative;
@@ -42,7 +42,7 @@
 }
 
 .hero__title {
-  font-size: clamp(40px, 6vw, 68px);
+  font-size: clamp(48px, 7vw, 82px);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.08;
@@ -51,9 +51,9 @@
 }
 
 .hero__subtitle {
-  font-size: 17px;
+  font-size: 19px;
   color: var(--text-secondary);
-  max-width: 480px;
+  max-width: 540px;
   line-height: 1.7;
   margin-bottom: 40px;
   font-weight: 400;
@@ -145,7 +145,7 @@
 
 /* Code card */
 .hero__visual {
-  flex: 0 0 420px;
+  flex: 0 0 520px;
   position: relative;
   display: flex;
   align-items: center;
@@ -221,30 +221,50 @@
   50% { transform: translateY(-6px); }
 }
 
-/* Scroll hint */
 .hero__scroll-hint {
   position: absolute;
-  bottom: 32px;
+  bottom: 60px;
   left: 50%;
-  transform: translateX(-50%);
+  
+  /* Horizontal: stays centered (-50%)
+     Vertical: drops by exactly 30px as scroll-progress goes from 0 to 1 */
+  transform: translate(-50%, calc(var(--scroll-progress) * 120px));
+  
+  /* Keep it visible */
+  opacity: 1; 
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  opacity: 0.4;
+  width: fit-content;
+  padding: 12px 24px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 100px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  z-index: 5;
+  pointer-events: none;
+  
+  /* The 0.1s transition smooths out mouse-wheel "notches" */
+  transition: transform 0.1s ease-out;
 }
 
 .hero__scroll-hint span {
   font-size: 10px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-secondary);
+  font-weight: 600;
 }
 
 .hero__scroll-line {
   width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  height: 30px;
+  /* Updated to Amber/Oak accent color for visibility on light mode */
+  background: linear-gradient(to bottom, var(--accent), transparent);
   animation: scrollLine 2s ease-in-out infinite;
 }
 

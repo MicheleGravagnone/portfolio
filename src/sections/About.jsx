@@ -13,7 +13,7 @@ export default function About() {
           <p className="about__body">
             I'm Michele, a Computer Engineering graduate from the University of Salerno.
             My academic journey has been centered around backend systems, microservices
-            architectures and the design of reliable/scalable software.
+            architectures and the design of reliable / scalable software.
           </p>
           <p className="about__body">
             My thesis project at Lanificio Digitale brought me deep into the world of
@@ -47,7 +47,6 @@ export default function About() {
             <div className="about__card-icon">🎓</div>
             <h3>Education</h3>
             <p>BSc Computer Engineering, University of Salerno <br /> (2021–2026)</p>
-            <span className="tag">Summa Cum Laude — Liceo Classico</span>
           </div>
           <div className="about__card glass-card">
             <div className="about__card-icon">🌍</div>

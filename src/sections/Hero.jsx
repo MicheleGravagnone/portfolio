@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Hero.css';
 
 export default function Hero() {
+  const hintRef = useRef(null);
   const textRef = useRef(null);
 
   useEffect(() => {
@@ -14,6 +15,18 @@ export default function Hero() {
       el.style.opacity = '1';
       el.style.transform = 'translateY(0)';
     });
+
+    const handleScroll = () => {
+      if (!hintRef.current) return;
+      const currentScroll = window.scrollY;
+
+      const progress = Math.min(currentScroll / 400, 1);
+
+      hintRef.current.style.setProperty('--scroll-progress', progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -128,7 +141,11 @@ export class MCPController {
         </div>
       </div>
 
-      <div className="hero__scroll-hint">
+      <div 
+        className="hero__scroll-hint"
+        ref={hintRef}
+        style={{ '--scroll-progress': 0 }} // Initial state
+      >
         <span>Scroll</span>
         <div className="hero__scroll-line" />
       </div>
