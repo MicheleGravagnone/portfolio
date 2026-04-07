@@ -60,4 +60,4 @@ npm run build
 ## License
 This project is licensed under the MIT License. You are permitted to use, modify, and distribute this code provided that the original copyright and license notice are included.
 
-Built by Michele Gravagnone 2026
+<sup><sub> Built by Michele Gravagnone 2026 </sub></sup>
