@@ -15,7 +15,7 @@
   display: flex; align-items: center; gap: 24px;
 }
 
-/* Logo */
+/* ── Logo ─────────────────────────────────────────────── */
 .navbar__logo {
   display: flex; align-items: center; gap: 10px;
   text-decoration: none; margin-right: auto; flex-shrink: 0;
@@ -33,7 +33,7 @@
   color: var(--text-primary); letter-spacing: -0.01em;
 }
 
-/* Links */
+/* ── Links ─────────────────────────────────────────────── */
 .navbar__links {
   display: flex; list-style: none; gap: 2px;
 }
@@ -48,12 +48,12 @@
   background: var(--surface-hover);
 }
 
-/* Controls group */
+/* ── Controls group ─────────────────────────────────────────────── */
 .navbar__controls {
   display: flex; align-items: center; gap: 6px;
 }
 
-/* Icon button (theme + lang) */
+/* ── Icon button ─────────────────────────────────────────────── */
 .navbar__icon-btn {
   display: inline-flex; align-items: center; gap: 4px;
   padding: 7px 11px;
@@ -73,7 +73,7 @@
   font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
 }
 
-/* CTA */
+/* ── CTA ─────────────────────────────────────────────── */
 .navbar__cta {
   padding: 8px 18px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -88,7 +88,7 @@
   filter: brightness(1.08);
 }
 
-/* Hamburger */
+/* ── Hamburger ─────────────────────────────────────────────── */
 .navbar__hamburger {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 4px;
@@ -102,7 +102,7 @@
 .navbar__hamburger.open span:nth-child(2) { opacity: 0; }
 .navbar__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-/* Mobile */
+/* ── Mobile ─────────────────────────────────────────────── */
 .navbar__mobile {
   display: none;
   flex-direction: column;
