@@ -40,7 +40,7 @@ export default function Hero() {
       if (!hintRef.current) return;
       const p = Math.min(window.scrollY / 380, 1);
       hintRef.current.style.setProperty('--sp', p);
-      hintRef.current.style.opacity = 1 - p;
+      // hintRef.current.style.opacity = 1 - p;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);

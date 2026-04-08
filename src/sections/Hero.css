@@ -125,7 +125,7 @@
 
 /* Scroll hint */
 .hero__scroll-hint {
-  position: absolute; bottom: 36px; left: 50%;
+  position: absolute; bottom: 70px; left: 50%;
   transform: translate(-50%, calc(var(--sp, 0) * 110px));
   opacity: 1;
   display: flex; flex-direction: column; align-items: center; gap: 7px;

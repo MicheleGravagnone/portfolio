@@ -1,18 +1,18 @@
-.experience__list {
+.exp__list {
   margin-top: 48px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.experience__item {
+.exp__item {
   padding: 28px 32px;
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 32px;
 }
 
-.experience__left {
+.exp__left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -20,7 +20,7 @@
   padding-top: 4px;
 }
 
-.experience__company-badge {
+.exp__company-badge {
   width: 40px;
   height: 40px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -33,32 +33,32 @@
   color: white;
 }
 
-.experience__meta {
+.exp__meta {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-.experience__company {
+.exp__company {
   font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
 }
 
-.experience__location {
+.exp__location {
   font-size: 12px;
   color: var(--text-tertiary);
 }
 
-.experience__header {
+.exp__header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 18px;
 }
 
-.experience__role {
+.exp__role {
   font-size: 17px;
   font-weight: 600;
   color: var(--text-primary);
@@ -66,14 +66,14 @@
   margin-bottom: 4px;
 }
 
-.experience__period {
+.exp__period {
   font-size: 12px;
   color: var(--accent);
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-.experience__bullets {
+.exp__bullets {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@
   margin-bottom: 20px;
 }
 
-.experience__bullets li {
+.exp__bullets li {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -90,7 +90,7 @@
   line-height: 1.6;
 }
 
-.experience__bullet-dot {
+.exp__bullet-dot {
   width: 5px;
   height: 5px;
   background: var(--accent);
@@ -99,18 +99,18 @@
   margin-top: 7px;
 }
 
-.experience__tags {
+.exp__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
 @media (max-width: 768px) {
-  .experience__item {
+  .exp__item {
     grid-template-columns: 1fr;
     padding: 22px;
   }
-  .experience__left {
+  .exp__left {
     flex-direction: row;
     align-items: center;
   }
