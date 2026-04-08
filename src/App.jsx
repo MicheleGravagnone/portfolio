@@ -8,16 +8,20 @@ import Projects from './sections/Projects';
 import Skills from './sections/Skills';
 import Contact from './sections/Contact';
 import './index.css';
+import { useApp } from './AppContext';
 
 function Portfolio() {
+  const { lang } = useApp();
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.09 }
     );
+
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [lang]);
 
   return (
     <div className="app">

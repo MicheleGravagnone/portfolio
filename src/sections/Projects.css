@@ -34,8 +34,8 @@
 .projects__featured-badge {
   display: inline-flex;
   padding: 4px 12px;
-  background: rgbargba(229, 164, 66, 0.2);
-  border: 1px solid rgbargba(229, 164, 66, 0.3);
+  background: rgba(229, 164, 66, 0.2);
+  border: 1px solid rgba(229, 164, 66, 0.3);
   border-radius: 100px;
   font-size: 11px;
   font-weight: 600;

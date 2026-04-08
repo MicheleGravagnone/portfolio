@@ -1,42 +1,22 @@
 import React from 'react';
+import { useApp } from '../AppContext';
+import { content } from '../i18n';
 import './Skills.css';
 
-const categories = [
-  {
-    label: 'Languages',
-    icon: '{ }',
-    skills: ['Python', 'Java', 'C', 'JavaScript', 'TypeScript', 'SQL'],
-  },
-  {
-    label: 'Development',
-    icon: '⚡',
-    skills: ['OOP', 'REST APIs', 'Microservices', 'Design Patterns', 'TDD', 'Agile'],
-  },
-  {
-    label: 'Infrastructure',
-    icon: '🐳',
-    skills: ['Docker', 'Kubernetes', 'Linux', 'Git', 'Node.js', 'VS Code'],
-  },
-  {
-    label: 'Concepts',
-    icon: '🧠',
-    skills: ['Distributed Systems', 'Networking', 'Databases', 'Operating Systems', 'MCP', 'API Orchestration'],
-  },
-];
-
 export default function Skills() {
+  const { lang } = useApp();
+  const t = content[lang].skills;
+
   return (
     <section className="section" id="skills">
       <div className="fade-in">
-        <p className="section-label">Skills</p>
-        <h2 className="section-title">My toolbox</h2>
-        <p className="section-subtitle">
-          Technologies and concepts I worked with — from low-level C to distributed cloud-native systems.
-        </p>
+        <p className="section-label">{t.label}</p>
+        <h2 className="section-title">{t.title}</h2>
+        <p className="section-subtitle">{t.subtitle}</p>
       </div>
 
       <div className="skills__grid">
-        {categories.map((cat, i) => (
+        {t.categories.map((cat, i) => (
           <div
             className={`skills__category glass-card fade-in fade-in-delay-${i % 3 + 1}`}
             key={cat.label}
