@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { AppProvider } from './AppContext';
 import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
 import About from './sections/About';
@@ -8,17 +9,11 @@ import Skills from './sections/Skills';
 import Contact from './sections/Contact';
 import './index.css';
 
-export default function App() {
+function Portfolio() {
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.09 }
     );
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -39,5 +34,13 @@ export default function App() {
         <Contact />
       </main>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <AppProvider>
+      <Portfolio />
+    </AppProvider>
   );
 }
