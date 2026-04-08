@@ -1,70 +1,33 @@
 .about__grid {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 60px;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 56px; align-items: start;
 }
-
 .about__body {
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin-bottom: 16px;
+  font-size: 15.5px; color: var(--text-secondary);
+  line-height: 1.78; margin-bottom: 15px;
 }
-
 .about__links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 28px;
+  display: flex; flex-direction: column; gap: 9px; margin-top: 26px;
 }
-
 .about__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; color: var(--text-secondary);
+  text-decoration: none; transition: color 0.25s ease;
 }
-
 .about__link:hover { color: var(--accent); }
-.about__link--location { pointer-events: none; }
+.about__link--static { pointer-events: none; }
 
-.about__cards {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.about__card {
-  padding: 22px;
-}
-
-.about__card-icon {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
+.about__cards { display: flex; flex-direction: column; gap: 13px; }
+.about__card { padding: 20px 22px; }
+.about__card-icon { font-size: 20px; margin-bottom: 9px; }
 .about__card h3 {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
+  font-size: 14px; font-weight: 600; color: var(--text-primary);
+  margin-bottom: 5px; letter-spacing: -0.01em;
 }
-
 .about__card p {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 10px;
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6;
 }
 
-@media (max-width: 900px) {
-  .about__grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+@media (max-width: 860px) {
+  .about__grid { grid-template-columns: 1fr; gap: 36px; }
 }
