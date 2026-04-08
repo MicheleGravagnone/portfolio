@@ -1,0 +1,213 @@
+export const content = {
+  en: {
+    nav: {
+      links: ['About', 'Experience', 'Projects', 'Skills', 'Contact'],
+      hrefs: ['#about', '#experience', '#projects', '#skills', '#contact'],
+      cta: 'Hire me',
+    },
+    hero: {
+      badge: 'Available for opportunities',
+      title1: 'Building',
+      title2: 'reliable software',
+      title3: 'that scales.',
+      subtitle:
+        'Software Engineer based in Naples, Italy. Computer Engineering graduate with a focus on backend systems and distributed architectures.',
+      cta1: 'View projects',
+      stat1Num: 'C2', stat1Label: 'English level',
+      stat2Num: 'BSc', stat2Label: 'Computer Engineering',
+    },
+    about: {
+      label: 'About me',
+      title: 'Engineer by training,\nbuilder by nature.',
+      p1: "I'm Michele, a Computer Engineering graduate from the University of Salerno. My academic journey has been centered around backend systems, microservices architectures and the design of reliable, scalable software.",
+      p2: 'My thesis project at Lanificio Digitale brought me deep into the world of distributed architectures — designing an orchestration server that manages interactions between internal services and external APIs with precision and control.',
+      p3: "Beyond code, I'm fluent in English (Cambridge C2), fond of piano and classical music, and always looking to grow — whether that means picking up a new technology or relocating for the right opportunity.",
+      cards: [
+        { icon: '🎓', title: 'Education', body: 'BSc Computer Engineering, University of Salerno (2021–2026) · Classical High School — Graduated with Honors' },
+        { icon: '🌍', title: 'Languages', body: 'English C2 (Cambridge) · Italian (native)' },
+        { icon: '✈️', title: 'Available for relocation', body: 'Open to on-site, hybrid and remote opportunities worldwide.' },
+      ],
+      location: 'Naples, Italy · Open to relocation',
+    },
+    experience: {
+      label: 'Experience',
+      title: "Where I've worked",
+      subtitle: 'Hands-on experience building real backend infrastructure in a production environment.',
+      items: [
+        {
+          company: 'Lanificio Digitale S.r.l.',
+          location: 'Naples, Italy',
+          role: "Backend Engineer — Bachelor's Thesis",
+          period: 'Nov 2025 – Feb 2026',
+          bullets: [
+            'Designed and implemented an MCP-based backend server for controlled API orchestration within microservices architectures.',
+            'Developed mechanisms to manage interactions between internal services and external APIs, with a strong focus on automation and reliability.',
+            'Worked closely with production infrastructure using Docker and Node.js on a TypeScript codebase.',
+          ],
+          tags: ['TypeScript', 'Node.js', 'Docker', 'REST APIs', 'Kubernetes', 'MCP'],
+        },
+      ],
+    },
+    projects: {
+      label: 'Projects',
+      title: "Things I've built",
+      subtitle: 'A selection of academic and personal projects spanning backend engineering, machine learning and full-stack development.',
+      items: [
+        {
+          title: 'MCP-Based API Orchestration Server',
+          description: 'Backend server built on the Model Context Protocol to orchestrate API interactions within a microservices architecture. Enables controlled access to internal services through tool definition, with automatic communication between distributed components.',
+          tags: ['TypeScript', 'Node.js', 'Docker', 'Kubernetes', 'REST APIs'],
+          context: 'BS Thesis · University of Salerno × Lanificio Digitale',
+          featured: true, icon: '⚙️',
+        },
+        {
+          title: 'Complex Numbers Calculator',
+          description: 'Java desktop application with GUI for operations on complex numbers. Built with a stack-based data structure following OOP principles. Covers the full software lifecycle: planning, requirements, design, implementation and testing.',
+          tags: ['Java', 'SceneBuilder', 'Figma', 'OOP', 'Unit Testing'],
+          context: 'Software Engineering course',
+          icon: '🧮',
+        },
+        {
+          title: 'Autonomous Driving Agent — TORCS',
+          description: 'Autonomous driving agent for the TORCS simulator using a K-Nearest Neighbors machine learning model. Dataset preparation, model training and evaluation for autonomous steering and speed control.',
+          tags: ['Java', 'Machine Learning', 'KNN', 'TORCS'],
+          context: 'Machine Learning course',
+          icon: '🚗',
+        },
+        {
+          title: 'Car Dealership Web Store',
+          description: 'Full-stack web application for a car dealership. Features product catalog, user authentication and personal dashboard. Backend in PHP + PostgreSQL, frontend in HTML/CSS/JavaScript.',
+          tags: ['PHP', 'PostgreSQL', 'JavaScript', 'HTML', 'CSS'],
+          context: 'Web Technologies course',
+          icon: '🛒',
+        },
+      ],
+    },
+    skills: {
+      label: 'Skills',
+      title: 'My toolbox',
+      subtitle: 'Technologies and concepts I work with — from low-level C to distributed cloud-native systems.',
+      categories: [
+        { label: 'Languages', icon: '{ }', skills: ['Python', 'Java', 'C', 'JavaScript', 'TypeScript', 'SQL'] },
+        { label: 'Development', icon: '⚡', skills: ['OOP', 'REST APIs', 'Microservices', 'Design Patterns', 'TDD', 'Agile'] },
+        { label: 'Infrastructure', icon: '🐳', skills: ['Docker', 'Kubernetes', 'Linux', 'Git', 'Node.js', 'VS Code'] },
+        { label: 'Concepts', icon: '🧠', skills: ['Distributed Systems', 'Networking', 'Databases', 'Operating Systems', 'MCP', 'API Orchestration'] },
+      ],
+    },
+    contact: {
+      label: 'Contact',
+      title: "Let's build something\ntogether.",
+      subtitle: "I'm currently open to new opportunities — whether it's a full-time role, freelance project, or just a good conversation about distributed systems.",
+      ctaEmail: 'Send an email',
+      ctaCopy: 'Copy email',
+      ctaCopied: 'Copied!',
+      footer: 'Designed & built by Michele Gravagnone',
+    },
+  },
+
+  it: {
+    nav: {
+      links: ['Chi sono', 'Esperienza', 'Progetti', 'Competenze', 'Contatti'],
+      hrefs: ['#about', '#experience', '#projects', '#skills', '#contact'],
+      cta: 'Assumimi',
+    },
+    hero: {
+      badge: 'Disponibile per opportunità',
+      title1: 'Costruisco',
+      title2: 'software affidabile',
+      title3: 'e scalabile.',
+      subtitle:
+        'Software Engineer basato a Napoli. Laureato in Ingegneria Informatica con focus su sistemi backend e architetture distribuite.',
+      cta1: 'Vedi progetti',
+      stat1Num: 'C2', stat1Label: 'Livello inglese',
+      stat2Num: 'BSc', stat2Label: 'Ing. Informatica',
+    },
+    about: {
+      label: 'Chi sono',
+      title: 'Ingegnere per formazione,\ncostruttore per natura.',
+      p1: "Sono Michele, laureato in Ingegneria Informatica all'Università degli Studi di Salerno. Il mio percorso accademico si è concentrato su sistemi backend, architetture a microservizi e la progettazione di software affidabile e scalabile.",
+      p2: "Il progetto di tesi presso Lanificio Digitale mi ha immerso nel mondo delle architetture distribuite — progettando un server di orchestrazione che gestisce le interazioni tra servizi interni e API esterne con precisione e controllo.",
+      p3: "Oltre al codice, suono il pianoforte, amo la musica classica e sono sempre alla ricerca di crescita — che si tratti di adottare una nuova tecnologia o di trasferirmi per l'opportunità giusta.",
+      cards: [
+        { icon: '🎓', title: 'Formazione', body: 'Laurea Triennale Ing. Informatica, Univ. Salerno (2021–2026) · Liceo Classico — Diploma con Lode' },
+        { icon: '🌍', title: 'Lingue', body: 'Italiano (madrelingua) · Inglese C2 certificato Cambridge' },
+        { icon: '✈️', title: 'Disponibile al trasferimento', body: 'Aperto a opportunità in presenza, ibride e da remoto in tutto il mondo.' },
+      ],
+      location: 'Napoli, Italia · Disponibile al trasferimento',
+    },
+    experience: {
+      label: 'Esperienza',
+      title: 'Dove ho lavorato',
+      subtitle: 'Esperienza pratica nello sviluppo di infrastrutture backend reali in un ambiente di produzione.',
+      items: [
+        {
+          company: 'Lanificio Digitale S.r.l.',
+          location: 'Napoli, Italia',
+          role: 'Backend Engineer — Tesi di Laurea',
+          period: 'Nov 2025 – Feb 2026',
+          bullets: [
+            'Progettato e implementato un server backend basato su MCP per l\'orchestrazione controllata delle API in architetture a microservizi.',
+            'Sviluppato meccanismi per gestire le interazioni tra servizi interni e API esterne, con forte focus su automazione e affidabilità.',
+            'Lavorato a stretto contatto con l\'infrastruttura di produzione usando Docker e Node.js su codebase TypeScript.',
+          ],
+          tags: ['TypeScript', 'Node.js', 'Docker', 'REST APIs', 'Kubernetes', 'MCP'],
+        },
+      ],
+    },
+    projects: {
+      label: 'Progetti',
+      title: 'Cosa ho costruito',
+      subtitle: 'Una selezione di progetti accademici e personali che spaziano dal backend engineering al machine learning e allo sviluppo full-stack.',
+      items: [
+        {
+          title: 'Server di Orchestrazione API basato su MCP',
+          description: 'Server backend basato sul Model Context Protocol per orchestrare le interazioni API in un\'architettura a microservizi. Abilita l\'accesso controllato ai servizi interni tramite definizione di strumenti e comunicazione automatica tra componenti distribuiti.',
+          tags: ['TypeScript', 'Node.js', 'Docker', 'Kubernetes', 'REST APIs'],
+          context: 'Tesi Triennale · Univ. Salerno × Lanificio Digitale',
+          featured: true, icon: '⚙️',
+        },
+        {
+          title: 'Calcolatrice Numeri Complessi',
+          description: 'Applicazione desktop Java con GUI per operazioni sui numeri complessi. Struttura dati a stack, principi OOP. Copre l\'intero ciclo di vita del software: pianificazione, requisiti, progettazione, implementazione e testing.',
+          tags: ['Java', 'SceneBuilder', 'Figma', 'OOP', 'Unit Testing'],
+          context: 'Corso di Ingegneria del Software',
+          icon: '🧮',
+        },
+        {
+          title: 'Agente di Guida Autonoma — TORCS',
+          description: 'Agente di guida autonoma per il simulatore TORCS tramite modello K-Nearest Neighbors. Preparazione dataset, addestramento e valutazione del modello per il controllo autonomo di sterzo e velocità.',
+          tags: ['Java', 'Machine Learning', 'KNN', 'TORCS'],
+          context: 'Corso di Machine Learning',
+          icon: '🚗',
+        },
+        {
+          title: 'Web Store Concessionaria Auto',
+          description: 'Applicazione web full-stack per una concessionaria auto. Catalogo prodotti, autenticazione utente e dashboard personale. Backend in PHP + PostgreSQL, frontend in HTML/CSS/JavaScript.',
+          tags: ['PHP', 'PostgreSQL', 'JavaScript', 'HTML', 'CSS'],
+          context: 'Corso di Tecnologie Web',
+          icon: '🛒',
+        },
+      ],
+    },
+    skills: {
+      label: 'Competenze',
+      title: 'Il mio arsenale',
+      subtitle: 'Tecnologie e concetti con cui lavoro — dal C a basso livello ai sistemi cloud-native distribuiti.',
+      categories: [
+        { label: 'Linguaggi', icon: '{ }', skills: ['Python', 'Java', 'C', 'JavaScript', 'TypeScript', 'SQL'] },
+        { label: 'Sviluppo', icon: '⚡', skills: ['OOP', 'REST APIs', 'Microservizi', 'Design Patterns', 'TDD', 'Agile'] },
+        { label: 'Infrastruttura', icon: '🐳', skills: ['Docker', 'Kubernetes', 'Linux', 'Git', 'Node.js', 'VS Code'] },
+        { label: 'Concetti', icon: '🧠', skills: ['Sistemi Distribuiti', 'Networking', 'Database', 'Sistemi Operativi', 'MCP', 'Orchestrazione API'] },
+      ],
+    },
+    contact: {
+      label: 'Contatti',
+      title: 'Costruiamo qualcosa\ninsieme.',
+      subtitle: "Sono aperto a nuove opportunità — che si tratti di un ruolo a tempo pieno, un progetto freelance o solo una buona conversazione sui sistemi distribuiti.",
+      ctaEmail: 'Invia una mail',
+      ctaCopy: 'Copia email',
+      ctaCopied: 'Copiato!',
+      footer: 'Progettato e sviluppato da Michele Gravagnone',
+    },
+  },
+};
