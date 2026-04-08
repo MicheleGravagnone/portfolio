@@ -19,7 +19,6 @@ export default function Experience() {
         {t.items.map((exp, i) => (
           <div className="exp__item glass-card fade-in fade-in-delay-2" key={i}>
             <div className="exp__left">
-              <div className="exp__badge">{exp.company.charAt(0)}</div>
               <div className="exp__meta">
                 <span className="exp__company">{exp.company}</span>
                 <span className="exp__location">{exp.location}</span>

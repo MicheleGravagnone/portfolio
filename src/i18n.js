@@ -21,7 +21,7 @@ export const content = {
       title: 'Engineer by training,\nbuilder by nature.',
       p1: "I'm Michele, a Computer Engineering graduate from the University of Salerno. My academic journey has been centered around backend systems, microservices architectures and the design of reliable, scalable software.",
       p2: 'My thesis project at Lanificio Digitale brought me deep into the world of distributed architectures — designing an orchestration server that manages interactions between internal services and external APIs with precision and control.',
-      p3: "Beyond code, I'm fluent in English (Cambridge C2), fond of piano and classical music, and always looking to grow — whether that means picking up a new technology or relocating for the right opportunity.",
+      p3: "Beyond code, I'm fluent in English (Cambridge C2), fond of piano and classical music and always looking to grow — whether that means picking up a new technology or relocating for the right opportunity.",
       cards: [
         { icon: '🎓', title: 'Education', body: 'BSc Computer Engineering, University of Salerno (2021–2026) · Classical High School — Graduated with Honors' },
         { icon: '🌍', title: 'Languages', body: 'English C2 (Cambridge) · Italian (native)' },

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useApp } from '../AppContext';
+import { content } from '../i18n';
 import './Contact.css';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const { lang } = useApp();
+  const t = content[lang].contact;
 
   const copyEmail = () => {
     navigator.clipboard.writeText('michelegravagnone@gmail.com');
@@ -13,8 +17,8 @@ export default function Contact() {
   return (
     <section className="section" id="contact">
       <div className="contact__inner fade-in">
-        <p className="section-label">Contact</p>
-        <h2 className="section-title">Let's build something<br />together.</h2>
+        <p className="section-label">{t.label}</p>
+        <h2 className="section-title">{t.title}</h2>
 
         <div className="contact__actions">
           <a href="mailto:michelegravagnone@gmail.com" className="contact__btn contact__btn--primary">
@@ -22,7 +26,7 @@ export default function Contact() {
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
-            Send an email
+            {t.ctaEmail}
           </a>
 
           <button className="contact__btn contact__btn--copy" onClick={copyEmail}>
@@ -31,7 +35,7 @@ export default function Contact() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
-                Copied!
+                {t.ctaCopied}
               </>
             ) : (
               <>
@@ -39,7 +43,7 @@ export default function Contact() {
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
                   <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
                 </svg>
-                Copy email
+                {t.ctaCopy}
               </>
             )}
           </button>
@@ -72,7 +76,7 @@ export default function Contact() {
       </div>
 
       <footer className="contact__footer">
-        <p>Designed & built by Michele Gravagnone · {new Date().getFullYear()}</p>
+        <p>{t.footer} · {new Date().getFullYear()}</p>
       </footer>
     </section>
   );

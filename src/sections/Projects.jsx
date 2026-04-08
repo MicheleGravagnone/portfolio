@@ -29,7 +29,6 @@ export default function Projects() {
             {p.featured && (
               <div className="projects__featured-badge">Featured</div>
             )}
-            <div className="projects__icon">{p.icon}</div>
             <h3 className="projects__title">{p.title}</h3>
             <p className="projects__desc">{p.description}</p>
             <p className="projects__context">{p.context}</p>

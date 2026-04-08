@@ -22,7 +22,6 @@ export default function Skills() {
             key={cat.label}
           >
             <div className="skills__cat-header">
-              <span className="skills__cat-icon">{cat.icon}</span>
               <span className="skills__cat-label">{cat.label}</span>
             </div>
             <div className="skills__pills">
