@@ -105,12 +105,16 @@
 /* Mobile */
 .navbar__mobile {
   display: none; flex-direction: column; gap: 4px;
-  padding: 10px 16px 18px;
+  padding: 20px 16px;
   border-top: 1px solid var(--glass-border);
   max-height: 0; overflow: hidden;
-  transition: max-height 0.35s ease;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
 }
-.navbar__mobile--open { max-height: 460px; }
+.navbar__mobile--open { max-height: 90vh; opacity: 1;}
 .navbar__mobile-link {
   padding: 10px 14px; font-size: 15px;
   color: var(--text-secondary); text-decoration: none;
