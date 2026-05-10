@@ -68,6 +68,13 @@ export const content = {
           icon: '🧮',
         },
         {
+          title: 'Task Tracker CLI',
+          description: 'Robust terminal-based task management system featuring a custom JSON persistence engine and a dynamic UI. Supports full task lifecycle management including automated due-date tracking, status transitions and advanced filtering. Built with a focus on high-performance CLI interaction and cross-platform ANSI compatibility.',
+          tags: ['Java', 'CLI', 'JSON', 'OOP', 'ANSI Styling'],
+          context: 'Personal Project · Open Source',
+          icon: '📝',
+        },
+        {
           title: 'Autonomous Driving Agent — TORCS',
           description: 'Autonomous driving agent for the TORCS simulator using a K-Nearest Neighbors machine learning model. Dataset preparation, model training and evaluation for autonomous steering and speed control.',
           tags: ['Java', 'Machine Learning', 'KNN', 'TORCS'],
@@ -172,6 +179,13 @@ export const content = {
           tags: ['Java', 'SceneBuilder', 'Figma', 'OOP', 'Unit Testing'],
           context: 'Corso di Ingegneria del Software',
           icon: '🧮',
+        },
+        {
+          title: 'Task Tracker CLI',
+          description: 'Robusto sistema di gestione delle attività da terminale dotato di un motore di persistenza JSON personalizzato e un\'interfaccia utente dinamica. Supporta la gestione completa del ciclo di vita dei task inclusi il monitoraggio automatico delle scadenze, transizioni di stato e filtri avanzati. Progettato per un\'interazione CLI ad alte prestazioni con piena compatibilità cross-platform per gli stili ANSI.',
+          tags: ['Java', 'CLI', 'JSON', 'OOP', 'ANSI Styling'],
+          context: 'Progetto Personale · Open Source',
+          icon: '📝',
         },
         {
           title: 'Agente di Guida Autonoma — TORCS',
