@@ -148,7 +148,7 @@ export const content = {
       subtitle: 'Esperienza pratica nello sviluppo di infrastrutture backend reali in un ambiente di produzione.',
       items: [
         {
-          company: 'Lanificio Digitale S.r.l.',
+          company: 'Lanificio Digitale S.r.l. ',
           location: 'Napoli, Italia',
           role: 'Backend Engineer — Tesi di Laurea',
           period: 'Nov 2025 – Feb 2026',
