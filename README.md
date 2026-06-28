@@ -15,32 +15,34 @@ A high-performance portfolio website built with React and pure CSS3. The design 
 
 ## Motion & Transitions
 
-* **Hero entrance**: headline lines rise out of overflow masks with staggered delays, followed by a blur-fade cascade; replays on language switch.
-* **Theme switch**: circular "ink spill" reveal radiating from the toggle click point, built on the View Transitions API with a graceful instant fallback.
-* **Scroll reveals**: sections de-blur and rise into place via the Intersection Observer API.
-* **Micro-interactions**: 3D cursor tilt on the hero terminal card, magnetic CTA buttons, cursor-tracking spotlight on project cards, paused-on-hover tech marquee.
-* **Accessibility**: every animation respects `prefers-reduced-motion`.
+* **Liquid Magnetic Cursor**: A custom, fluid cursor that intelligently tracks the mouse and snaps to interactive elements, seamlessly expanding into a bubble wrap effect using optimized `requestAnimationFrame` lerping.
+* **Interactive SVG Diagrams**: Complex, fully declarative React/SVG architectural diagrams featuring automated packet-routing animations and dynamic state visualizations.
+* **Hero entrance**: Headline lines rise out of overflow masks with staggered delays, followed by a blur-fade cascade; replays on language switch.
+* **Scroll reveals**: Sections de-blur and rise into place via a precisely tuned Intersection Observer API.
+* **Micro-interactions**: Magnetic CTA buttons, active-state robust navbar, paused-on-hover tech marquee.
+* **Accessibility**: Every animation strictly respects the `prefers-reduced-motion` media query.
 
 ---
 
 ## Technical Stack
 
-* **Frontend**: React with Hooks and functional components — no UI or animation libraries.
+* **Frontend**: React with Hooks and functional components — zero heavy UI or animation libraries.
 * **Styling**: Pure CSS3 with custom properties for global theme management.
-* **Deployment**: GitHub Pages via `gh-pages`, with a GitHub Actions deploy workflow.
+* **Performance**: Stripped of unnecessary boilerplate (no unused testing suites or heavy metrics packages) for an ultra-lightweight bundle.
+* **Deployment**: Automated CI/CD pipeline via GitHub Actions using the native `actions/deploy-pages@v4`.
 
 ---
 
 ## Project Structure
 
-* **Navbar**: floating frosted-glass pill with numbered nav links, language/theme toggles and a scroll-progress hairline.
-* **Hero**: masked headline reveal beside a syntax-highlighted terminal card with a live status bar and floating tech badges.
-* **Marquee**: full-width scrolling strip of core technologies.
-* **About**: editorial two-column biography with glass fact cards (education, languages, relocation).
-* **Experience**: timeline rail with glowing nodes and frosted experience cards.
-* **Projects**: bento grid — featured MCP orchestration server, the Our Day Flutter app, the Porsche Showcase full-stack rebuild and more, each with a cursor spotlight and optional repo link.
-* **Skills**: categorized toolbox panels with mono-spaced pills.
-* **Contact**: centered glass panel with copy-to-clipboard email and social links.
+* **Navbar**: Floating frosted-glass pill with numbered nav links, language toggles, precise active-state tracking, and a scroll-progress hairline.
+* **Hero**: Masked headline reveal beside a syntax-highlighted terminal card with a live status bar and floating tech badges.
+* **Marquee**: Full-width scrolling strip of core technologies.
+* **About**: Editorial two-column biography with glass fact cards (education, languages, relocation).
+* **Experience**: Timeline rail with glowing nodes and frosted experience cards.
+* **Projects**: Bento grid — featuring an interactive, animated MCP orchestration server diagram, the Our Day Flutter app, the Porsche Showcase full-stack rebuild and more, each with optional repo links.
+* **Skills**: Categorized toolbox panels with mono-spaced pills.
+* **Contact**: Centered glass panel with copy-to-clipboard email and social links.
 
 ---
 
@@ -48,38 +50,4 @@ A high-performance portfolio website built with React and pure CSS3. The design 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/michelegravagnone/portfolio.git
-```
-
-### 2. Install dependencies
-```bash
-npm install
-```
-
-### 3. Run the development server
-```bash
-npm start
-```
-
-### 4. Build for production
-```bash
-npm run build
-```
-
-### 5. Deploy to GitHub Pages
-```bash
-npm run deploy
-```
-
----
-
-## Editing Content
-
-All copy lives in `src/i18n.js`, mirrored across the `en` and `it` blocks — keep both in sync when editing. Project entries support optional `repo` (renders a GitHub link button), `icon` (Unicode glyph) and `featured` fields. Theme tokens live at the top of `src/index.css`.
-
----
-
-## License
-This project is licensed under the MIT License. You are permitted to use, modify, and distribute this code provided that the original copyright and license notice are included.
-
-<sup><sub> Built by Michele Gravagnone 2026 </sub></sup>
+git clone [https://github.com/michelegravagnone/portfolio.git](https://github.com/michelegravagnone/portfolio.git)
