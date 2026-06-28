@@ -15,12 +15,12 @@ const WIRES = [
 ];
 
 const PHASES = [
-  { path: 'c1', mode: 'fwd', dur: 1500, nodes: ['controller'] },
-  { path: 'c2', mode: 'fwd', dur: 1000, nodes: ['orch'] },
-  { path: 'c3', mode: 'round', dur: 1500, nodes: ['registry'] },
-  { path: 'c4', mode: 'round', dur: 1500, nodes: ['redis'] },
-  { path: 'c5b', mode: 'fwd', dur: 1650, nodes: ['s2'] },
-  { path: 'c6', mode: 'fwd', dur: 1950, nodes: ['agent'] }
+  { path: 'c1', mode: 'fwd', dur: 3000, nodes: ['controller'] },
+  { path: 'c2', mode: 'fwd', dur: 2000, nodes: ['orch'] },
+  { path: 'c3', mode: 'round', dur: 3000, nodes: ['registry'] },
+  { path: 'c4', mode: 'round', dur: 3000, nodes: ['redis'] },
+  { path: 'c5b', mode: 'fwd', dur: 3300, nodes: ['s2'] },
+  { path: 'c6', mode: 'fwd', dur: 3900, nodes: ['agent'] }
 ];
 
 export default function McpDiagram({ className = '' }) {
