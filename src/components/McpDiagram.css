@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.mcp-comp {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  aspect-ratio: 21/9;
+  overflow: hidden;
+  background: radial-gradient(ellipse 120% 90% at 50% 0%, #100f0d 0%, #0b0b0a 60%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.8);
+  --ac: #cdf463;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.mcp-comp * {
+  box-sizing: border-box;
+}
+
+.mcp-anim-march {
+  animation: mcp_march 1.5s linear infinite;
+}
+
+@keyframes mcp_march {
+  to { stroke-dashoffset: -29; }
+}
+
+@keyframes mcp_gdrift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-12px, 9px); }
+}
+
+@keyframes mcp_liveDot {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes mcp_nodePulse {
+  0%, 100% { box-shadow: 0 0 22px -9px currentColor; }
+  50% { box-shadow: 0 0 30px -4px currentColor; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mcp-comp * {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+  }
+}

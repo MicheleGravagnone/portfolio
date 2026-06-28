@@ -1,0 +1,52 @@
+.c-dot {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  will-change: transform;
+  width: 6px; height: 6px;
+  background: #fff;
+  margin: -3px 0 0 -3px;
+  transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease;
+}
+
+.c-dot--hover { 
+  width: 0; height: 0; margin: 0; 
+}
+
+.c-dot--hidden { opacity: 0; }
+
+.c-ring-wrap {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99998;
+  will-change: transform;
+  mix-blend-mode: difference;
+}
+
+.c-ring {
+  width: 34px; height: 34px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  margin: -17px 0 0 -17px;
+  
+  transition: 
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+    opacity 0.3s ease;
+    
+  will-change: width, height, border-radius, transform;
+}
+
+.c-ring--hover {
+  border-color: rgba(255, 255, 255, 0.85);
+  background-color: transparent;
+}
+
+.c-ring--hidden { opacity: 0; }
+
+@media (hover: none) { 
+  .c-dot, .c-ring-wrap { display: none; } 
+}

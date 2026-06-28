@@ -1,0 +1,80 @@
+/* ── Headline ────────────────────────────────────────────────────────── */
+.contact__headline {
+  display: flex; flex-direction: column; gap: 0.02em;
+  margin-bottom: 32px;
+}
+.contact__clip-wrap { overflow: hidden; padding-bottom: 0.06em; }
+
+.contact__clip {
+  display: block; overflow: hidden; padding-bottom: 0.06em;
+}
+.contact__clip-inner {
+  display: block;
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(42px,7vw,88px);
+  line-height: 1.0; letter-spacing: -.04em;
+  color: var(--t1);
+}
+
+/* ── Subtitle ────────────────────────────────────────────────────────── */
+.contact__sub {
+  font-family: var(--font-body); font-size: 16px;
+  color: var(--t3); max-width: 480px;
+  line-height: 1.75; margin-bottom: 44px;
+}
+
+/* ── Actions ─────────────────────────────────────────────────────────── */
+.contact__actions {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px;
+}
+
+.contact__btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  height: 50px; padding: 0 28px; border-radius: 2px;
+  font-family: var(--font-body); font-size: 14px; font-weight: 500;
+  letter-spacing: .01em; text-decoration: none; cursor: pointer;
+  transition: background .45s cubic-bezier(.16,1,.3,1),
+              color .45s ease, border-color .45s ease, transform .45s ease;
+}
+.contact__btn--fill {
+  background: var(--accent); color: var(--accent-on); border: 1px solid var(--accent);
+}
+.contact__btn--fill:hover {
+  opacity: .88; transform: translateY(-2px);
+}
+.contact__btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.18); color: var(--t2);
+}
+.contact__btn--ghost:hover {
+  border-color: rgba(255,255,255,.45); color: var(--t1);
+}
+
+/* ── Social ──────────────────────────────────────────────────────────── */
+.contact__social {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--t6); letter-spacing: .04em;
+}
+.contact__social-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  color: var(--t6); text-decoration: none;
+  transition: color .2s ease;
+}
+.contact__social-link:hover { color: var(--t1); }
+.contact__social-sep { opacity: .4; }
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+.contact__footer {
+  display: flex; align-items: center; gap: 10px;
+  padding-top: 64px; margin-top: 64px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--t6); letter-spacing: .04em;
+}
+.contact__footer-sep { opacity: .35; }
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .contact__clip-inner { font-size: clamp(36px,11vw,54px); }
+}
