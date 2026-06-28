@@ -80,7 +80,11 @@ export default function Navbar() {
               aria-label="Menu"
               aria-expanded={menuOpen}
             >
-              <span /><span /><span />
+              <div className="navbar__burger-inner">
+                <span /><span />
+                <span /><span />
+                <span /><span />
+              </div>
             </button>
           </div>
         </div>
