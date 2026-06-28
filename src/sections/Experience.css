@@ -4,7 +4,6 @@
   gap: clamp(24px,4vw,72px);
 }
 
-/* ── Sidebar ─────────────────────────────────────────────────────────── */
 .exp__sidebar {
   display: flex; flex-direction: column; gap: 20px;
 }
@@ -29,7 +28,6 @@
   font-family: var(--font-body); font-size: 14px; color: var(--t6); margin-top: 3px;
 }
 
-/* ── Role title ──────────────────────────────────────────────────────── */
 .exp__role {
   margin: 0 0 8px;
   font-family: var(--font-display); font-weight: 500;
@@ -43,7 +41,6 @@
   line-height: 1.7; color: var(--t3); max-width: 600px;
 }
 
-/* ── Numbered bullets ────────────────────────────────────────────────── */
 .exp__bullets { display: flex; flex-direction: column; }
 
 .exp__bullet {
@@ -63,7 +60,6 @@
   line-height: 1.65; color: var(--t2);
 }
 
-/* ── Tech tags ───────────────────────────────────────────────────────── */
 .exp__techs {
   display: flex; flex-wrap: wrap; gap: 10px 22px;
   margin-top: 28px;
@@ -72,7 +68,6 @@
 }
 .exp__tech-sep { color: var(--t8); }
 
-/* ── Responsive ──────────────────────────────────────────────────────── */
 @media (max-width: 820px) {
   .exp__grid { grid-template-columns: 1fr; gap: 22px; }
 }
