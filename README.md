@@ -50,4 +50,36 @@ A high-performance portfolio website built with React and pure CSS3. The design 
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/michelegravagnone/portfolio.git](https://github.com/michelegravagnone/portfolio.git)
+git clone https://github.com/michelegravagnone/portfolio.git
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run the development server
+```bash
+npm start
+```
+
+### 4. Build for production (Testing locally)
+```bash
+npm run build
+```
+
+### Deployment
+This project uses automated GitHub Actions deployment. Simply push your changes to the `main` branch, and the `.github/workflows/deploy.yml` pipeline will automatically build and publish your site to GitHub Pages.
+
+---
+
+## Editing Content
+
+All copy lives in `src/i18n.js`, mirrored across the `en` and `it` blocks — keep both in sync when editing. Project entries support optional `repo` (renders a GitHub link button), `icon` (Unicode glyph) and `featured` fields. Theme tokens live at the top of `src/index.css`.
+
+---
+
+## License
+This project is licensed under the MIT License. You are permitted to use, modify, and distribute this code provided that the original copyright and license notice are included.
+
+<sup><sub> Built by Michele Gravagnone 2026 </sub></sup>
