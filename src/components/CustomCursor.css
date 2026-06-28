@@ -13,7 +13,10 @@
 }
 
 .c-dot--hover { 
-  width: 0; height: 0; margin: 0; 
+  width: 4px; 
+  height: 4px; 
+  margin: -2px 0 0 -2px; 
+  opacity: 0.7; 
 }
 
 .c-dot--hidden { opacity: 0; }

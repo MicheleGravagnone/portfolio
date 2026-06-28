@@ -33,6 +33,12 @@ html {
 
 html, body { margin: 0; padding: 0; }
 
+@media (hover: hover) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--t1);
