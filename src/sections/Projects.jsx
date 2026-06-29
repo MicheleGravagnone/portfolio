@@ -11,8 +11,12 @@ const EASE = [0.16, 1, 0.3, 1];
 function useScrollDeactivate(ref) {
   useEffect(() => {
     const off = () => ref.current?.classList.remove('iframe-active');
+    window.addEventListener('wheel', off, { passive: true });
     window.addEventListener('scroll', off, { passive: true });
-    return () => window.removeEventListener('scroll', off);
+    return () => {
+      window.removeEventListener('wheel', off);
+      window.removeEventListener('scroll', off);
+    };
   }, [ref]);
 }
 
@@ -48,26 +52,19 @@ function Placeholder({ label, ratio }) {
 }
 
 function OurDayDemo() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { margin: '150px 0px' });
-
   return (
     <div
-      ref={ref}
       className="proj__phone"
       onMouseEnter={() => window.dispatchEvent(new Event('dot-cursor'))}
       onMouseLeave={() => window.dispatchEvent(new Event('show-cursor'))}
     >
-      {inView && (
-        <iframe
-          src="/portfolio/apps/our-day/"
-          title="Our Day Demo"
-          loading="lazy"
-          allow="fullscreen"
-          onMouseEnter={() => window.dispatchEvent(new Event('hide-cursor'))}
-          onMouseLeave={() => window.dispatchEvent(new Event('dot-cursor'))}
-        />
-      )}
+      <iframe
+        src="/portfolio/apps/our-day/"
+        title="Our Day Demo"
+        allow="fullscreen"
+        onMouseEnter={() => window.dispatchEvent(new Event('hide-cursor'))}
+        onMouseLeave={() => window.dispatchEvent(new Event('dot-cursor'))}
+      />
     </div>
   );
 }

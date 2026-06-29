@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=350, height=450, initial-scale=1">
   <title>Complex Number Calculator</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
 
     html, body {
       width: 350px; height: 450px;
@@ -14,7 +14,6 @@
       font-family: system-ui, -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
       user-select: none;
-      cursor: default;
     }
 
     #app { width: 350px; height: 450px; display: flex; flex-direction: column; background: #111111; }
@@ -26,7 +25,7 @@
     }
     .tab-btn {
       flex: 1; background: transparent; border: none;
-      color: #666666; font-size: 13px; cursor: pointer;
+      color: #666666; font-size: 13px;
       position: relative; outline: none;
       font-family: inherit;
     }
@@ -74,7 +73,7 @@
 
     .btn {
       height: 44px; width: 52px; border: 1px solid #282828;
-      border-radius: 8px; font-size: 16px; cursor: pointer;
+      border-radius: 8px; font-size: 16px;
       background: #1c1c1c; color: #e0e0e0; outline: none;
       font-family: inherit; transition: background 0.08s;
     }
@@ -87,7 +86,7 @@
     }
     .btn.peri:hover { background: #222236; border-color: #303048; color: #a0a0d0; }
     .btn.peri:active { background: #2a2a48; }
-    .btn.peri:disabled { background: #121218; color: #252530; border-color: #161620; opacity: 1; cursor: default; }
+    .btn.peri:disabled { background: #121218; color: #252530; border-color: #161620; opacity: 1; }
 
     .btn.enter {
       grid-column: 3 / span 2; width: 112px;
@@ -136,11 +135,11 @@
       width: 90px; height: 44px;
       background: #1c1c1c; color: #c0c0c0; font-size: 13px;
       border: 1px solid #282828; border-radius: 8px;
-      cursor: pointer; outline: none; font-family: inherit;
+      outline: none; font-family: inherit;
     }
     .s-btn:hover { background: #272727; }
     .s-btn:active { background: #303030; }
-    .s-btn:disabled { background: #141414; color: #2e2e2e; border-color: #1a1a1a; cursor: default; }
+    .s-btn:disabled { background: #141414; color: #2e2e2e; border-color: #1a1a1a; }
 
     /* ── Variable view ── */
     #var-view {
