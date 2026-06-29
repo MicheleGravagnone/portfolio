@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=680, height=420, initial-scale=1">
+  <title>TORCS KNN Driver</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 680px; height: 420px; overflow: hidden;
+      background: #0d0d11;
+      font-family: 'Courier New', Courier, monospace;
+      user-select: none;
+    }
+
+    #app { display: flex; width: 680px; height: 420px; }
+
+    /* ── Left: terminal panel ── */
+    #term {
+      width: 250px; flex-shrink: 0; height: 420px;
+      background: #0c0c0c;
+      border-right: 1px solid #1a1a28;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    #titlebar {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 6px;
+      padding: 0 8px;
+      height: 26px;
+      background: #111118;
+      border-bottom: 1px solid #1a1a28;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; }
+    .dot-r { background: #ed8796; }
+    .dot-y { background: #eed49f; }
+    .dot-g { background: #a6da95; }
+    #titlebar span {
+      font-size: 9px; letter-spacing: 0.08em;
+      color: #3a3a52; margin-left: 4px;
+    }
+
+    #scroll {
+      flex: 1; overflow: hidden;
+      padding: 6px 7px 6px;
+      font-size: 8.5px; line-height: 1.45;
+      position: relative;
+    }
+
+    #lines { position: absolute; bottom: 6px; left: 7px; right: 7px; }
+
+    .ln { word-break: break-all; }
+    .ln-send  { color: #eed49f; }
+    .ln-recv  { color: #8aadf4; }
+    .ln-data  { color: #4a4a66; }
+    .ln-val   { color: #cad3f5; }
+    .ln-dim   { color: #2e2e44; }
+    .ln-blank { height: 4px; }
+
+    /* ── Right: video panel ── */
+    #vid {
+      width: 430px; flex-shrink: 0; height: 420px;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #vid video {
+      width: 430px;
+      height: 420px;
+      display: block;
+    }
+
+    /* KNN badge overlay */
+    #badge {
+      position: absolute; bottom: 8px; left: 8px;
+      font-size: 8px; letter-spacing: 0.12em;
+      color: rgba(183,189,248,0.55);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <div id="term">
+    <div id="titlebar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <span>torcs_client · KNN Agent</span>
+    </div>
+    <div id="scroll">
+      <div id="lines"></div>
+    </div>
+  </div>
+
+  <div id="vid">
+    <video autoplay muted loop playsinline src="torcs_game.mp4"></video>
+    <div id="badge">KNN DRIVER · TORCS SCR</div>
+  </div>
+
+</div>
+
+<script>
+// ── Race state simulation ─────────────────────────────────────────────────────
+// Matches the ~40s lap in the video (straight → corner → straight → corner → straight)
+const LAP = 40000; // ms
+
+const phases = [
+  // [start_t, end_t, accel, brake, steer_base, gear, speed_base, trackPos_base, angle_base]
+  { t0: 0,    t1: 4,    acc: 0.0, brk: 0.0, steer: 0.00, gear: 1, spd: 30,  tp: 0.02,  ang: 0.001 },  // standing start
+  { t0: 4,    t1: 8,    acc: 1.0, brk: 0.0, steer: 0.00, gear: 3, spd: 100, tp: 0.01,  ang: 0.005 },  // accelerating
+  { t0: 8,    t1: 14,   acc: 1.0, brk: 0.0, steer: 0.00, gear: 5, spd: 168, tp: -0.02, ang: -0.003 }, // straight
+  { t0: 14,   t1: 17,   acc: 0.0, brk: 1.0, steer: 0.05, gear: 4, spd: 130, tp: -0.05, ang: 0.010 },  // braking
+  { t0: 17,   t1: 22,   acc: 0.8, brk: 0.0, steer: 0.31, gear: 4, spd: 95,  tp: -0.15, ang: 0.065 },  // right turn
+  { t0: 22,   t1: 25,   acc: 0.0, brk: 0.8, steer: 0.10, gear: 3, spd: 75,  tp: -0.20, ang: 0.082 },  // hairpin braking
+  { t0: 25,   t1: 30,   acc: 1.0, brk: 0.0, steer: -0.15,gear: 4, spd: 120, tp: 0.10,  ang: -0.035 }, // exit corner
+  { t0: 30,   t1: 34,   acc: 1.0, brk: 0.0, steer: 0.00, gear: 5, spd: 172, tp: 0.02,  ang: -0.008 }, // back straight
+  { t0: 34,   t1: 37,   acc: 0.0, brk: 1.0, steer: -0.08,gear: 4, spd: 118, tp: 0.06,  ang: -0.025 }, // braking
+  { t0: 37,   t1: 40,   acc: 0.8, brk: 0.0, steer: -0.28,gear: 4, spd: 88,  tp: 0.18,  ang: -0.060 }, // left turn
+];
+
+let distRaced = 0;
+let lapTime = 0;
+let lapCount = 1;
+let lapT0 = Date.now();
+
+function getPhase(sec) {
+  for (const p of phases) { if (sec >= p.t0 && sec < p.t1) return p; }
+  return phases[phases.length - 1];
+}
+
+function lerp(a, b, t) { return a + (b - a) * Math.max(0, Math.min(1, t)); }
+
+function noise(amp) { return (Math.random() - 0.5) * 2 * amp; }
+
+function fmt(v, d = 4) { return v.toFixed(d); }
+
+function getState() {
+  const now = Date.now();
+  const elapsed = (now - lapT0) % LAP;
+  const sec = elapsed / 1000;
+
+  if (elapsed < 200 && now - lapT0 > 5000) {
+    lapCount = Math.min(3, lapCount + 1);
+  }
+
+  const p = getPhase(sec);
+  const blend = (sec - p.t0) / (p.t1 - p.t0);
+
+  const spd = p.spd + noise(4);
+  const ang = p.ang + noise(0.005);
+  const tp  = p.tp  + noise(0.01);
+
+  distRaced += spd / 3.6 * 0.3; // ~300ms interval
+  const dist = distRaced % 2000;
+
+  const rpm = (p.gear <= 2 ? 3000 : 4000) + spd * 18 + noise(200);
+  const wheelVel = (spd / 3.6 / 0.33).toFixed(1);
+
+  // 19 range sensors (simplified: front sensors longest on straight)
+  const trackSensors = Array.from({ length: 19 }, (_, i) => {
+    const offsetDeg = (-90 + i * 10) * Math.PI / 180;
+    const base = i === 9 ? 180 : (Math.abs(i - 9) < 4 ? 120 - Math.abs(i - 9) * 20 : 30);
+    return Math.max(5, base + noise(8)).toFixed(1);
+  });
+
+  return {
+    acc: p.acc, brk: p.brk, gear: p.gear,
+    steer: p.steer + noise(0.02),
+    angle: ang, lapTime: sec.toFixed(3), damage: 0,
+    distFromStart: dist.toFixed(1), distRaced: distRaced.toFixed(1),
+    fuel: (94.2 - distRaced * 0.00003).toFixed(2),
+    lastLap: lapCount > 1 ? '43.820' : '0',
+    lapCount: `${lapCount}/3`,
+    racePos: 1, rpm: rpm.toFixed(0), speedX: spd.toFixed(4),
+    trackPos: tp, trackSensors,
+    wv: wheelVel, lapSec: sec,
+  };
+}
+
+// ── Terminal rendering ────────────────────────────────────────────────────────
+const container = document.getElementById('lines');
+const MAXLINES  = 34; // how many lines fit in the scroll area
+let lineBuffer  = [];
+
+function span(cls, text) { return `<span class="${cls}">${text}</span>`; }
+
+function pushLines(arr) {
+  lineBuffer.push(...arr);
+  if (lineBuffer.length > MAXLINES) lineBuffer = lineBuffer.slice(-MAXLINES);
+  container.innerHTML = lineBuffer.map(l =>
+    l === '' ? '<div class="ln ln-blank"></div>'
+             : `<div class="ln">${l}</div>`
+  ).join('');
+}
+
+function addPair() {
+  const s = getState();
+
+  const steerStr = (s.steer >= 0 ? '+' : '') + s.steer.toFixed(3);
+  const tpStr    = (s.trackPos >= 0 ? '+' : '') + s.trackPos.toFixed(4);
+  const angStr   = (s.angle >= 0 ? '+' : '') + s.angle.toFixed(6);
+
+  const sensors = s.trackSensors.slice(0, 5).join(' ') + ' ... ' + s.trackSensors[9] + ' ... ' + s.trackSensors.slice(-3).join(' ');
+
+  const sendLines = [
+    span('ln-send', 'Sending:'),
+    span('ln-data','  (accel ') + span('ln-val', s.acc.toFixed(1)) + span('ln-data',')(brake ') + span('ln-val', s.brk.toFixed(1)) + span('ln-data',')(clutch 0.0)'),
+    span('ln-data','  (gear ') + span('ln-val', s.gear) + span('ln-data',')(steer ') + span('ln-val', steerStr) + span('ln-data',')(meta 0)'),
+  ];
+
+  const recvLines = [
+    span('ln-recv', 'Received:'),
+    span('ln-data','  (angle ') + span('ln-val', angStr) + span('ln-data',')'),
+    span('ln-data','  (curLapTime ') + span('ln-val', s.lapTime) + span('ln-data',')(damage ') + span('ln-val', s.damage) + span('ln-data',')'),
+    span('ln-data','  (distRaced ') + span('ln-val', s.distRaced) + span('ln-data',')(fuel ') + span('ln-val', s.fuel) + span('ln-data',')'),
+    span('ln-data','  (gear ') + span('ln-val', s.gear) + span('ln-data',')(rpm ') + span('ln-val', s.rpm) + span('ln-data',')'),
+    span('ln-data','  (speedX ') + span('ln-val', s.speedX) + span('ln-data',')'),
+    span('ln-data','  (track ') + span('ln-dim', sensors) + span('ln-data',')'),
+    span('ln-data','  (trackPos ') + span('ln-val', tpStr) + span('ln-data',')'),
+    span('ln-data','  (wheelSpinVel ') + span('ln-val', s.wv) + span('ln-data',' ... )'),
+    '',
+  ];
+
+  pushLines([...sendLines, ...recvLines]);
+}
+
+// Seed with initial lines
+for (let i = 0; i < 3; i++) addPair();
+
+// Update every ~300ms
+setInterval(addPair, 300);
+</script>
+</body>
+</html>

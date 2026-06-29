@@ -3,21 +3,38 @@ import './CustomCursor.css';
 
 const MAGNET_RANGE = 88;
 const MAGNET_PULL = 1;
-const LERP_SPEED = 0.12; 
+const LERP_SPEED = 0.12;
 const INTERACTIVE = 'a, button';
 
 export default function CustomCursor() {
   const dotRef = useRef(null);
   const ringWrapRef = useRef(null);
   const ringRef = useRef(null);
-  
+
   const current = useRef({ x: -200, y: -200, w: 34, h: 34, br: 17 });
   const target = useRef({ x: -200, y: -200, w: 34, h: 34, br: 17 });
-  
+
   const pos = useRef({ x: -200, y: -200 });
   const rafId = useRef(null);
-  const [hover,  setHover]  = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [hover,   setHover]   = useState(false);
+  const [hidden,  setHidden]  = useState(false);
+  const [dotOnly, setDotOnly] = useState(false);
+
+  useEffect(() => {
+    const hide    = () => { setHidden(true);  setDotOnly(false); };
+    const show    = () => { setHidden(false); setDotOnly(false); };
+    const dotMode = () => { setHidden(false); setDotOnly(true);  };
+
+    window.addEventListener('hide-cursor', hide);
+    window.addEventListener('show-cursor', show);
+    window.addEventListener('dot-cursor',  dotMode);
+
+    return () => {
+      window.removeEventListener('hide-cursor', hide);
+      window.removeEventListener('show-cursor', show);
+      window.removeEventListener('dot-cursor',  dotMode);
+    };
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia('(hover: none)').matches) return;
@@ -38,7 +55,7 @@ export default function CustomCursor() {
         target.current = {
           x: mx,
           y: my,
-          w: 56, 
+          w: 56,
           h: 56,
           br: 28
         };
@@ -46,7 +63,7 @@ export default function CustomCursor() {
       } else {
         const nodes = document.querySelectorAll(INTERACTIVE);
         let minDist = Infinity, best = null;
-        
+
         nodes.forEach(node => {
           const rect = node.getBoundingClientRect();
           if (!rect.width || !rect.height) return;
@@ -72,9 +89,6 @@ export default function CustomCursor() {
       }
     };
 
-    const onLeave = () => setHidden(true);
-    const onEnter = () => setHidden(false);
-
     const loop = () => {
       current.current.x  = lerp(current.current.x, target.current.x, LERP_SPEED);
       current.current.y  = lerp(current.current.y, target.current.y, LERP_SPEED);
@@ -84,25 +98,21 @@ export default function CustomCursor() {
 
       if (ringWrapRef.current && ringRef.current) {
         ringWrapRef.current.style.transform = `translate(${current.current.x}px, ${current.current.y}px)`;
-        
+
         ringRef.current.style.width = `${current.current.w}px`;
         ringRef.current.style.height = `${current.current.h}px`;
         ringRef.current.style.borderRadius = `${current.current.br}px`;
         ringRef.current.style.margin = `-${current.current.h / 2}px 0 0 -${current.current.w / 2}px`;
       }
-      
+
       rafId.current = requestAnimationFrame(loop);
     };
 
     window.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseleave', onLeave);
-    document.addEventListener('mouseenter', onEnter);
     rafId.current = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseleave', onLeave);
-      document.removeEventListener('mouseenter', onEnter);
       cancelAnimationFrame(rafId.current);
     };
   }, []);
@@ -111,9 +121,9 @@ export default function CustomCursor() {
 
   return (
     <>
-      <div ref={dotRef} className={`c-dot${hover ? ' c-dot--hover' : ''}${hidden ? ' c-dot--hidden' : ''}`} />
+      <div ref={dotRef} className={`c-dot${hover && !dotOnly ? ' c-dot--hover' : ''}${hidden ? ' c-dot--hidden' : ''}`} />
       <div ref={ringWrapRef} className="c-ring-wrap">
-        <div ref={ringRef} className={`c-ring${hover ? ' c-ring--hover' : ''}${hidden ? ' c-ring--hidden' : ''}`} />
+        <div ref={ringRef} className={`c-ring${hover && !dotOnly ? ' c-ring--hover' : ''}${hidden || dotOnly ? ' c-ring--hidden' : ''}`} />
       </div>
     </>
   );

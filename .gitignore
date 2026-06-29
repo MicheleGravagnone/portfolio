@@ -21,3 +21,8 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/public/apps/our-day/
+
+# Large source video files (compressed versions are committed instead)
+public/apps/torcs-viz/torcs.mp4

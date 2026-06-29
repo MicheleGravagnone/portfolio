@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=350, height=450, initial-scale=1">
+  <title>Complex Number Calculator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 350px; height: 450px;
+      overflow: hidden;
+      background: #111111;
+      font-family: system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      cursor: default;
+    }
+
+    #app { width: 350px; height: 450px; display: flex; flex-direction: column; background: #111111; }
+
+    /* ── Tab bar ── */
+    .tab-bar {
+      display: flex; height: 55px; flex-shrink: 0;
+      background: #111111; border-bottom: 1px solid #222222;
+    }
+    .tab-btn {
+      flex: 1; background: transparent; border: none;
+      color: #666666; font-size: 13px; cursor: pointer;
+      position: relative; outline: none;
+      font-family: inherit;
+    }
+    .tab-btn:hover { color: #aaaaaa; }
+    .tab-btn.active { color: #ffffff; }
+    .tab-btn.active::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: #6366f1;
+    }
+
+    /* ── Stack preview (calculator views only) ── */
+    .stack-preview {
+      height: 69px; flex-shrink: 0;
+      background: #0d0d0d; border-bottom: 1px solid #1e1e1e;
+      padding: 5px 20px; display: flex; flex-direction: column;
+      gap: 1px; justify-content: space-evenly;
+    }
+    .sp-row {
+      color: #333333; font-family: 'Courier New', Courier, monospace;
+      font-size: 13px; text-align: right; min-height: 20px; line-height: 20px;
+    }
+
+    /* ── Views ── */
+    .view { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+    .view.active { display: flex; }
+
+    /* ── Calculator view ── */
+    #calc-view { padding: 0 59px; }
+
+    .display {
+      height: 45px; display: flex; align-items: center; justify-content: flex-end;
+      padding: 4px 4px 8px 0;
+      border-bottom: 1px solid #1e1e1e;
+      font-family: 'Courier New', Courier, monospace; font-size: 26px;
+      color: #f0f0f0; overflow: hidden; white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .display.error { color: #f87171; font-size: 15px; }
+
+    .btn-grid {
+      display: grid; grid-template-columns: repeat(4, 52px);
+      gap: 8px; padding-top: 8px; flex-shrink: 0;
+    }
+
+    .btn {
+      height: 44px; width: 52px; border: 1px solid #282828;
+      border-radius: 8px; font-size: 16px; cursor: pointer;
+      background: #1c1c1c; color: #e0e0e0; outline: none;
+      font-family: inherit; transition: background 0.08s;
+    }
+    .btn:hover { background: #272727; border-color: #333333; }
+    .btn:active { background: #303030; }
+
+    .btn.peri {
+      background: #1a1a28; color: #8080b0; font-size: 12px;
+      border-color: #252535;
+    }
+    .btn.peri:hover { background: #222236; border-color: #303048; color: #a0a0d0; }
+    .btn.peri:active { background: #2a2a48; }
+    .btn.peri:disabled { background: #121218; color: #252530; border-color: #161620; opacity: 1; cursor: default; }
+
+    .btn.enter {
+      grid-column: 3 / span 2; width: 112px;
+      background: #4f46e5; color: #ffffff;
+      font-size: 14px; font-weight: 700; border: none;
+      letter-spacing: 0.06em;
+    }
+    .btn.enter:hover { background: #5b52f0; }
+    .btn.enter:active { background: #4338ca; }
+
+    /* ── Stack view ── */
+    #stack-view { flex-direction: row; }
+
+    .stack-panel {
+      width: 205px; height: 100%;
+      background: #111111; border-right: 1px solid #222222;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .stack-col-header {
+      height: 30px; flex-shrink: 0;
+      background: #0d0d0d; border-bottom: 1px solid #1e1e1e;
+      display: flex; align-items: center; padding: 0 8px;
+      font-size: 11px; color: #555555; letter-spacing: 0.08em;
+    }
+    .stack-rows {
+      flex: 1; overflow-y: auto; overflow-x: hidden;
+    }
+    .stack-rows::-webkit-scrollbar { width: 3px; }
+    .stack-rows::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+    .stack-row {
+      padding: 4px 8px;
+      font-family: 'Courier New', Courier, monospace; font-size: 14px;
+      color: #d0d0d0; border-bottom: 1px solid #1a1a1a;
+      text-align: right;
+    }
+    .stack-row.empty-msg {
+      color: #2a2a2a; font-size: 11px; letter-spacing: 0.06em;
+      text-align: center; padding-top: 16px;
+    }
+
+    .stack-btns {
+      width: 145px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 20px;
+    }
+    .s-btn {
+      width: 90px; height: 44px;
+      background: #1c1c1c; color: #c0c0c0; font-size: 13px;
+      border: 1px solid #282828; border-radius: 8px;
+      cursor: pointer; outline: none; font-family: inherit;
+    }
+    .s-btn:hover { background: #272727; }
+    .s-btn:active { background: #303030; }
+    .s-btn:disabled { background: #141414; color: #2e2e2e; border-color: #1a1a1a; cursor: default; }
+
+    /* ── Variable view ── */
+    #var-view {
+      align-items: center; justify-content: center;
+      color: #2a2a2a; font-size: 11px; letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- Tab bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('calc')">Calculator</button>
+    <button class="tab-btn" onclick="switchTab('var')">Variable</button>
+    <button class="tab-btn" onclick="switchTab('stack')">Stack</button>
+  </div>
+
+  <!-- Stack preview (hidden in stack view) -->
+  <div class="stack-preview" id="stack-preview">
+    <div class="sp-row" id="sp3"></div>
+    <div class="sp-row" id="sp2"></div>
+    <div class="sp-row" id="sp1"></div>
+  </div>
+
+  <!-- Calculator view -->
+  <div id="calc-view" class="view active">
+    <div class="display" id="display">0</div>
+
+    <!-- Main grid -->
+    <div class="btn-grid" id="main-grid">
+      <button class="btn peri" onclick="pressClear()">AC</button>
+      <button class="btn peri" onclick="pressC()">C</button>
+      <button class="btn peri" onclick="showMore()">More</button>
+      <button class="btn peri" onclick="pressOp('/')">÷</button>
+
+      <button class="btn" onclick="pressNum('7')">7</button>
+      <button class="btn" onclick="pressNum('8')">8</button>
+      <button class="btn" onclick="pressNum('9')">9</button>
+      <button class="btn peri" onclick="pressOp('*')">×</button>
+
+      <button class="btn" onclick="pressNum('4')">4</button>
+      <button class="btn" onclick="pressNum('5')">5</button>
+      <button class="btn" onclick="pressNum('6')">6</button>
+      <button class="btn peri" onclick="pressNum('-')">−</button>
+
+      <button class="btn" onclick="pressNum('1')">1</button>
+      <button class="btn" onclick="pressNum('2')">2</button>
+      <button class="btn" onclick="pressNum('3')">3</button>
+      <button class="btn peri" onclick="pressNum('+')">+</button>
+
+      <button class="btn" onclick="pressNum('.')">.</button>
+      <button class="btn" onclick="pressNum('0')">0</button>
+      <button class="btn enter" onclick="pressEnter()">ENTER</button>
+    </div>
+
+    <!-- More grid (hidden by default) -->
+    <div class="btn-grid" id="more-grid" style="display:none">
+      <button class="btn peri" onclick="pressClear()">AC</button>
+      <button class="btn peri" onclick="pressC()">C</button>
+      <button class="btn peri" onclick="hideMore()">Back</button>
+      <button class="btn peri" onclick="pressNum('&lt;')">&lt;</button>
+
+      <button class="btn" onclick="pressNum('7')">7</button>
+      <button class="btn" onclick="pressNum('8')">8</button>
+      <button class="btn" onclick="pressNum('9')">9</button>
+      <button class="btn peri" onclick="pressNum('&gt;')">&gt;</button>
+
+      <button class="btn" onclick="pressNum('4')">4</button>
+      <button class="btn" onclick="pressNum('5')">5</button>
+      <button class="btn" onclick="pressNum('6')">6</button>
+      <button class="btn peri" onclick="pressAlt('+/-')">+/−</button>
+
+      <button class="btn" onclick="pressNum('1')">1</button>
+      <button class="btn" onclick="pressNum('2')">2</button>
+      <button class="btn" onclick="pressNum('3')">3</button>
+      <button class="btn peri" onclick="pressAlt('√')">√</button>
+
+      <button class="btn peri" onclick="pressNum('J')">J</button>
+      <button class="btn" onclick="pressNum('0')">0</button>
+      <button class="btn enter" onclick="pressEnter()">ENTER</button>
+    </div>
+  </div>
+
+  <!-- Variable view -->
+  <div id="var-view" class="view">
+    VARIABLES · NOT AVAILABLE IN DEMO
+  </div>
+
+  <!-- Stack view -->
+  <div id="stack-view" class="view">
+    <div class="stack-panel">
+      <div class="stack-col-header">STACK</div>
+      <div class="stack-rows" id="stack-rows"></div>
+    </div>
+    <div class="stack-btns">
+      <button class="s-btn" id="b-clear" onclick="stackOp('CLEAR')">CLEAR</button>
+      <button class="s-btn" id="b-drop"  onclick="stackOp('DROP')">DROP</button>
+      <button class="s-btn" id="b-dup"   onclick="stackOp('DUP')">DUP</button>
+      <button class="s-btn" id="b-swap"  onclick="stackOp('SWAP')">SWAP</button>
+      <button class="s-btn" id="b-over"  onclick="stackOp('OVER')">OVER</button>
+    </div>
+  </div>
+
+</div>
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let stack = [];       // stack[0] = top (most recently pushed)
+let disp  = '0';
+let errTimer = null;
+
+// ── Complex arithmetic ─────────────────────────────────────────────────────
+const C = {
+  add:  (a,b) => ({ r: a.r+b.r, i: a.i+b.i }),
+  sub:  (a,b) => ({ r: a.r-b.r, i: a.i-b.i }),
+  mul:  (a,b) => ({ r: a.r*b.r - a.i*b.i, i: a.r*b.i + a.i*b.r }),
+  div:  (a,b) => {
+    const d = b.r*b.r + b.i*b.i;
+    if (d === 0) return null;
+    return { r: (a.r*b.r + a.i*b.i)/d, i: (a.i*b.r - a.r*b.i)/d };
+  },
+  sqrt: (a) => {
+    const mod = Math.sqrt(a.r*a.r + a.i*a.i);
+    const arg = Math.atan2(a.i, a.r);
+    return { r: Math.sqrt(mod)*Math.cos(arg/2), i: Math.sqrt(mod)*Math.sin(arg/2) };
+  },
+  neg:  (a) => ({ r: -a.r, i: -a.i }),
+  fmt:  (a) => {
+    const re = a.r.toFixed(2);
+    const im = Math.abs(a.i).toFixed(2);
+    return `${re}${a.i >= 0 ? '+' : '-'}${im}j`;
+  }
+};
+
+// ── Parse complex from typed string ────────────────────────────────────────
+function parseComplex(txt) {
+  try {
+    if (txt.includes('J') && (txt.includes('+') || txt.includes('-')) &&
+        txt !== '+J' && txt !== '-J') {
+      let s = (txt.endsWith('+J') || txt.endsWith('-J'))
+        ? txt.replace('J','1') : txt.replace('J','');
+      const parts = s.split(/(?=[+-])/);
+      let i = 0;
+      if (i < parts.length && parts[i] === '') i++;
+      if (i >= parts.length) return null;
+      if (i === parts.length - 1) return { r: 0, i: parseFloat(parts[i]) };
+      const re = parseFloat(parts[i++]);
+      let im = 0;
+      for (; i < parts.length; i++) im += parseFloat(parts[i]);
+      return { r: re, i: im };
+    }
+    if (txt === 'J' || txt === '+J') return { r: 0, i:  1 };
+    if (txt === '-J')                return { r: 0, i: -1 };
+    if (txt.includes('J'))           return { r: 0, i: parseFloat(txt.replace('J','')) };
+    return { r: parseFloat(txt), i: 0 };
+  } catch { return null; }
+}
+
+// ── Display helpers ─────────────────────────────────────────────────────────
+const $disp = () => document.getElementById('display');
+
+function setDisp(txt) {
+  disp = txt;
+  const el = $disp();
+  el.textContent = txt;
+  el.classList.remove('error');
+}
+
+function showErr(msg) {
+  const el = $disp();
+  const prev = disp;
+  el.textContent = msg;
+  el.classList.add('error');
+  if (errTimer) clearTimeout(errTimer);
+  errTimer = setTimeout(() => {
+    el.textContent = prev;
+    el.classList.remove('error');
+    errTimer = null;
+  }, 1500);
+}
+
+// ── Stack preview & table ──────────────────────────────────────────────────
+function updatePreview() {
+  document.getElementById('sp1').textContent = stack.length >= 1 ? C.fmt(stack[0]) : '';
+  document.getElementById('sp2').textContent = stack.length >= 2 ? C.fmt(stack[1]) : '';
+  document.getElementById('sp3').textContent = stack.length >= 3 ? C.fmt(stack[2]) : '';
+}
+
+function updateStackView() {
+  const rows = document.getElementById('stack-rows');
+  if (!rows) return;
+  rows.innerHTML = '';
+  if (stack.length === 0) {
+    const msg = document.createElement('div');
+    msg.className = 'stack-row empty-msg';
+    msg.textContent = 'EMPTY';
+    rows.appendChild(msg);
+    return;
+  }
+  stack.forEach(c => {
+    const row = document.createElement('div');
+    row.className = 'stack-row';
+    row.textContent = C.fmt(c);
+    rows.appendChild(row);
+  });
+}
+
+function updateStackBtns() {
+  const empty = stack.length === 0, lt2 = stack.length < 2;
+  document.getElementById('b-drop').disabled = empty;
+  document.getElementById('b-dup').disabled  = empty;
+  document.getElementById('b-swap').disabled = lt2;
+  document.getElementById('b-over').disabled = lt2;
+}
+
+function updateAll() {
+  updatePreview();
+  updateStackView();
+  updateStackBtns();
+}
+
+// ── Button handlers ─────────────────────────────────────────────────────────
+function pressNum(ch) {
+  if (disp === '0' || disp.includes('j')) setDisp(ch);
+  else setDisp(disp + ch);
+}
+
+function pressC() {
+  if (disp.length > 1) setDisp(disp.slice(0,-1));
+  else setDisp('0');
+}
+
+function pressClear() { setDisp('0'); }
+
+function pressEnter() {
+  const txt = disp;
+
+  if (txt === '+' || txt === '-') {
+    if (stack.length < 2) return;
+    const a = stack.shift(), b = stack.shift();
+    const res = txt === '+' ? C.add(b,a) : C.sub(b,a);
+    stack.unshift(res);
+    setDisp(C.fmt(res));
+    updateAll();
+    return;
+  }
+
+  const c = parseComplex(txt);
+  if (!c || isNaN(c.r) || isNaN(c.i)) { showErr('Invalid input'); return; }
+  stack.unshift(c);
+  setDisp('0');
+  updateAll();
+}
+
+function pressOp(op) {
+  if (stack.length < 2) { pressNum(op); return; }
+  const a = stack.shift(), b = stack.shift();
+  let res;
+  if (op === '*') {
+    res = C.mul(b,a);
+  } else {
+    res = C.div(b,a);
+    if (!res) { stack.unshift(b); stack.unshift(a); showErr('Div by zero'); return; }
+  }
+  stack.unshift(res);
+  setDisp(C.fmt(res));
+  updateAll();
+}
+
+function pressAlt(op) {
+  if (stack.length === 0) return;
+  const a = stack.shift();
+  const res = op === '√' ? C.sqrt(a) : C.neg(a);
+  stack.unshift(res);
+  setDisp(C.fmt(res));
+  updateAll();
+}
+
+function stackOp(op) {
+  switch(op) {
+    case 'CLEAR': stack = []; break;
+    case 'DROP':  if (stack.length)   stack.shift(); break;
+    case 'DUP':   if (stack.length)   stack.unshift({...stack[0]}); break;
+    case 'SWAP':  if (stack.length>=2) [stack[0],stack[1]] = [stack[1],stack[0]]; break;
+    case 'OVER':  if (stack.length>=2) stack.unshift({...stack[1]}); break;
+  }
+  updateAll();
+}
+
+// ── Tab & view switching ────────────────────────────────────────────────────
+const TABS = ['calc','var','stack'];
+
+function switchTab(tab) {
+  TABS.forEach(t => {
+    document.getElementById(`${t}-view`).classList.toggle('active', t === tab);
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', TABS[i] === tab);
+  });
+  const preview = document.getElementById('stack-preview');
+  preview.style.display = tab === 'stack' ? 'none' : '';
+  if (tab === 'stack') updateAll();
+}
+
+function showMore() {
+  document.getElementById('main-grid').style.display = 'none';
+  document.getElementById('more-grid').style.display = 'grid';
+}
+
+function hideMore() {
+  document.getElementById('main-grid').style.display = 'grid';
+  document.getElementById('more-grid').style.display = 'none';
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+updateAll();
+</script>
+</body>
+</html>

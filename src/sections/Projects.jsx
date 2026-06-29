@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useEffect, useState } from "react";
 import { motion, useInView } from 'framer-motion';
 import { useApp } from '../AppContext';
 import { content } from '../i18n';
@@ -6,6 +7,14 @@ import './Projects.css';
 import McpDiagram from '../components/McpDiagram';
 
 const EASE = [0.16, 1, 0.3, 1];
+
+function useScrollDeactivate(ref) {
+  useEffect(() => {
+    const off = () => ref.current?.classList.remove('iframe-active');
+    window.addEventListener('scroll', off, { passive: true });
+    return () => window.removeEventListener('scroll', off);
+  }, [ref]);
+}
 
 function Reveal({ children, delay = 0, className = '' }) {
   const ref = useRef(null);
@@ -34,6 +43,163 @@ function Placeholder({ label, ratio }) {
       <div className="proj__img-cross proj__img-cross--tl" />
       <div className="proj__img-label">{label}</div>
       <div className="proj__img-dim">{ratio === '21/9' ? '21:9 · REPLACE WITH SCREENSHOT' : '4:3 · SCREENSHOT'}</div>
+    </div>
+  );
+}
+
+function OurDayDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { margin: '150px 0px' });
+
+  return (
+    <div
+      ref={ref}
+      className="proj__phone"
+      onMouseEnter={() => window.dispatchEvent(new Event('dot-cursor'))}
+      onMouseLeave={() => window.dispatchEvent(new Event('show-cursor'))}
+    >
+      {inView && (
+        <iframe
+          src="/portfolio/apps/our-day/"
+          title="Our Day Demo"
+          loading="lazy"
+          allow="fullscreen"
+          onMouseEnter={() => window.dispatchEvent(new Event('hide-cursor'))}
+          onMouseLeave={() => window.dispatchEvent(new Event('dot-cursor'))}
+        />
+      )}
+    </div>
+  );
+}
+
+function PorscheDemo() {
+  const ref = useRef(null);
+
+  const inView = useInView(ref, {
+    margin: "150px 0px",
+  });
+
+  const images = [
+    "/portfolio/apps/porsche/hero_dark.png",
+    "/portfolio/apps/porsche/car-detail.png",
+    "/portfolio/apps/porsche/shop.png",
+    "/portfolio/apps/porsche/trio.png",
+    "/portfolio/apps/porsche/dashboard.png",
+    "/portfolio/apps/porsche/login.png",
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % images.length);
+    }, 2500);
+
+    return () => clearInterval(timer);
+  }, [inView, images.length]);
+
+  return (
+    <div
+      ref={ref}
+      className="porsche-preview"
+      onMouseEnter={() => window.dispatchEvent(new Event('dot-cursor'))}
+      onMouseLeave={() => window.dispatchEvent(new Event('show-cursor'))}
+    >
+      {inView &&
+        images.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="Porsche website preview"
+            className={i === index ? "active" : ""}
+          />
+        ))}
+    </div>
+  );
+}
+
+function TaskTrackerDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { margin: '150px 0px' });
+  useScrollDeactivate(ref);
+
+  return (
+    <div
+      ref={ref}
+      className="proj__terminal"
+      onClick={() => {
+        ref.current?.classList.add('iframe-active');
+        window.dispatchEvent(new Event('hide-cursor'));
+      }}
+      onMouseEnter={() => window.dispatchEvent(new Event('dot-cursor'))}
+      onMouseLeave={() => {
+        ref.current?.classList.remove('iframe-active');
+        window.dispatchEvent(new Event('show-cursor'));
+      }}
+    >
+      {inView && (
+        <iframe
+          src="/portfolio/apps/task-tracker/"
+          title="Task Tracker CLI Demo"
+          loading="lazy"
+          onMouseLeave={() => window.dispatchEvent(new Event('dot-cursor'))}
+        />
+      )}
+    </div>
+  );
+}
+
+function TorcsVizDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { margin: '150px 0px' });
+
+  return (
+    <div
+      ref={ref}
+      className="proj__torcs-viz"
+      onMouseEnter={() => window.dispatchEvent(new Event('dot-cursor'))}
+      onMouseLeave={() => window.dispatchEvent(new Event('show-cursor'))}
+    >
+      {inView && (
+        <iframe
+          src="/portfolio/apps/torcs-viz/"
+          title="TORCS KNN Driver Visualization"
+          loading="lazy"
+        />
+      )}
+    </div>
+  );
+}
+
+function ComplexCalcDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { margin: '150px 0px' });
+  useScrollDeactivate(ref);
+
+  return (
+    <div
+      ref={ref}
+      className="proj__calc-frame"
+      onClick={() => {
+        ref.current?.classList.add('iframe-active');
+        window.dispatchEvent(new Event('hide-cursor'));
+      }}
+      onMouseEnter={() => window.dispatchEvent(new Event('dot-cursor'))}
+      onMouseLeave={() => {
+        ref.current?.classList.remove('iframe-active');
+        window.dispatchEvent(new Event('show-cursor'));
+      }}
+    >
+      {inView && (
+        <iframe
+          src="/portfolio/apps/complex-calculator/"
+          title="Complex Number Calculator Demo"
+          loading="lazy"
+          onMouseLeave={() => window.dispatchEvent(new Event('dot-cursor'))}
+        />
+      )}
     </div>
   );
 }
@@ -71,10 +237,23 @@ function FeaturedProject({ p }) {
 
 function ProjectCard({ p, index }) {
   const reversed = p.reversed;
+
   return (
     <Reveal delay={0.04 * index}>
       <article className={`proj proj--card${reversed ? ' proj--card-rev' : ''}`}>
-        <Placeholder label={p.placeholder} ratio={p.ratio} />
+        {p.ourDay ? (
+          <OurDayDemo />
+        ) : p.porschePreview ? (
+          <PorscheDemo />
+        ) : p.complexCalc ? (
+          <ComplexCalcDemo />
+        ) : p.taskTracker ? (
+          <TaskTrackerDemo />
+        ) : p.torcsViz ? (
+          <TorcsVizDemo />
+        ) : (
+          <Placeholder label={p.placeholder} ratio={p.ratio} />
+        )}
         <div className="proj__card-body">
           <div className="proj__meta">
             <span className="proj__num">{p.num}</span>
@@ -84,9 +263,17 @@ function ProjectCard({ p, index }) {
           <p className="proj__desc">{p.desc}</p>
           <div className="proj__foot">
             <span className="proj__tags">{p.tags}</span>
-            <a href={p.repo} target="_blank" rel="noreferrer" className="proj__arrow" aria-label="GitHub">
-              <ArrowIcon />
-            </a>
+            {p.repo && (
+              <a
+                href={p.repo}
+                target="_blank"
+                rel="noreferrer"
+                className="proj__arrow"
+                aria-label="GitHub"
+              >
+                <ArrowIcon />
+              </a>
+            )}
           </div>
         </div>
       </article>
