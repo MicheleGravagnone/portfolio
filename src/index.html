@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <title>Michele Gravagnone — Backend & DevOps</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Michele Gravagnone, backend developer and MSc student in CSIT at Lodz University of Technology, focused on distributed systems and DevOps. Explore APIs, infrastructure and developer tools."
+    />
+    <meta name="theme-color" content="#fffefc" />
+    <link rel="icon" href="favicon.ico" />
+    <script>
+      try {
+        const saved = localStorage.getItem("portfolio-theme");
+        document.documentElement.dataset.theme =
+          saved === "light" || saved === "dark" ? saved : "light";
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

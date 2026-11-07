@@ -13,25 +13,23 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: 'npm'
-          
+          cache: "npm"
+
       - run: npm ci
-      
+
       - name: Build
-        run: npm run build
-        env:
-          CI: false 
-          
+        run: npm run build:pages
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: './build' 
-          
+          path: "./dist/portfolio/browser"
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
