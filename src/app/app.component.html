@@ -193,7 +193,7 @@
             <p>
               {{
                 p.text(
-                  "Hi, I’m Michele. I build APIs, model data and connect services. This is a working collection of my projects, the decisions behind them, and what I’m learning along the way.",
+                  "Hi, I’m Michele. I build APIs, model data and connect services. This is a working collection of my projects, the decisions behind them and what I’m learning along the way.",
                   "Ciao, sono Michele. Sviluppo API, modello dati e connetto servizi. Qui raccolgo i miei progetti, le scelte che li guidano e quello che imparo lungo il percorso."
                 )
               }}
@@ -223,23 +223,39 @@
           <h2>{{ p.text("Work experience", "Esperienza lavorativa") }}</h2>
         </div>
         <div class="experience-entry">
-          <div class="entry-icon" aria-hidden="true">LD</div>
+          <div class="entry-icon">
+            <img
+              src="images/q01-logo.png"
+              alt="Q01"
+              width="85"
+              height="98"
+              loading="lazy"
+            />
+          </div>
           <div class="entry-body">
             <div class="entry-heading">
-              <h3>Lanificio Digitale</h3>
+              <h3>Backend Engineer</h3>
               <span class="entry-period">{{
                 p.text("Nov 2025 — Feb 2026", "Nov 2025 — Feb 2026")
               }}</span>
             </div>
             <p class="entry-role">
-              Backend Developer <span>·</span>
-              {{ p.text("Bachelor’s thesis", "Tesi di laurea") }}
+              <strong>Lanificio Digitale</strong> <span>·</span>
+              {{ p.text("Q01 platform", "Piattaforma Q01") }}
+            </p>
+            <p class="entry-context">
+              {{
+                p.text(
+                  "Internship & bachelor’s thesis",
+                  "Tirocinio e tesi di laurea"
+                )
+              }}
             </p>
             <p>
               {{
                 p.text(
-                  "Designed an MCP-based orchestration server for a microservices architecture, coordinating internal services and external APIs.",
-                  "Progettazione di un server di orchestrazione basato su MCP in un’architettura a microservizi, per coordinare servizi interni e API esterne."
+                  "Developed a NestJS and TypeScript backend prototype for Q01: an MCP-based orchestration layer that routes client requests to the platform’s business and DevOps microservices through a single API entry point.",
+                  "Sviluppo di un prototipo backend in NestJS e TypeScript per Q01: un livello di orchestrazione basato su MCP che instrada le richieste dei client verso i microservizi applicativi e DevOps della piattaforma tramite un unico punto di accesso API."
                 )
               }}
             </p>
@@ -247,23 +263,34 @@
               <li>
                 {{
                   p.text(
-                    "Defined controlled access to services through MCP tools.",
-                    "Definizione dell’accesso controllato ai servizi tramite tool MCP."
+                    "Separated REST controllers, orchestration and domain integrations; defined typed DTOs, request validation and Swagger API contracts.",
+                    "Separazione tra controller REST, orchestrazione e integrazioni di dominio; definizione di DTO tipizzati, validazione delle richieste e contratti API documentati con Swagger."
                   )
                 }}
               </li>
               <li>
                 {{
                   p.text(
-                    "Worked with TypeScript, Node.js and Docker, focusing on reliable communication between services.",
-                    "Lavoro con TypeScript, Node.js e Docker, con attenzione alla comunicazione affidabile tra servizi."
+                    "Built a metadata-driven tool registry and integrated Redis-backed context management to resolve operations and maintain execution state.",
+                    "Realizzazione di un registry di tool basato su metadati e integrazione della gestione del contesto con Redis, per risolvere le operazioni e mantenere lo stato di esecuzione."
+                  )
+                }}
+              </li>
+              <li>
+                {{
+                  p.text(
+                    "Integrated Q01’s authenticated publish/deploy APIs with payload mapping, HTTP timeouts and consistent success/error responses. Verified the end-to-end deployment flow using cURL and server logs.",
+                    "Integrazione delle API autenticate di publish/deploy di Q01 con mapping dei payload, timeout HTTP e risposte uniformi di successo ed errore. Verifica del flusso di deployment end-to-end tramite cURL e log del server."
                   )
                 }}
               </li>
             </ul>
+            <p class="entry-stack">
+              NestJS · TypeScript · REST APIs · Redis · Swagger · Docker
+            </p>
             <div class="experience-path">
-              <code>MCP client</code><span>→</span><code>Orchestrator</code
-              ><span>→</span><code>REST services</code>
+              <code>MCP controller</code><span>→</span><code>Orchestrator</code
+              ><span>→</span><code>Q01 APIs</code>
             </div>
           </div>
         </div>

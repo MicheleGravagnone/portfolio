@@ -756,6 +756,12 @@ summary::-webkit-details-marker {
   font-family: Georgia, serif;
   font-size: 0.875rem;
 }
+.entry-icon img {
+  display: block;
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
 .entry-heading {
   display: flex;
   justify-content: space-between;
@@ -782,6 +788,21 @@ summary::-webkit-details-marker {
 .entry-body > p:not(.entry-role) {
   font-size: 0.9375rem;
   margin-top: 17px;
+}
+.entry-role strong {
+  color: var(--text);
+  font-weight: 550;
+}
+.experience-entry .entry-body > .entry-context {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.experience-entry .entry-body > .entry-stack {
+  font-size: 0.6875rem;
+  color: var(--muted);
+  line-height: 1.9;
+  overflow-wrap: anywhere;
 }
 .entry-body ul {
   font-size: 0.875rem;

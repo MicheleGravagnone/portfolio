@@ -35,7 +35,7 @@ export const PROJECTS = [
     descriptionIt:
       "Catalogo full-stack con accessi distinti: modelli pubblici, specifiche prestazionali disponibili solo con una sessione validata dal server.",
     notes:
-      "Express serves a vanilla HTML/CSS/JavaScript frontend and a typed API. Passwords use bcrypt, JWTs travel in httpOnly cookies, and SQLite queries are parameterized. The rebuild replaces the original PHP backend.",
+      "Express serves a vanilla HTML/CSS/JavaScript frontend and a typed API. Passwords use bcrypt, JWTs travel in httpOnly cookies and SQLite queries are parameterized. The rebuild replaces the original PHP backend.",
     notesIt:
       "Express serve un frontend HTML/CSS/JavaScript e API tipizzate. Password con bcrypt, JWT in cookie httpOnly e query SQLite parametrizzate. Il backend sostituisce la versione originale in PHP.",
   },
