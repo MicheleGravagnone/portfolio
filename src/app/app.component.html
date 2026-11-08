@@ -1,7 +1,18 @@
-<a class="skip-link" href="#main">{{
-  p.text("Skip to content", "Vai al contenuto")
-}}</a>
-<div class="workspace" (keydown.escape)="closeMenu()">
+@if (welcomeVisible()) {
+  <app-welcome (finished)="welcomeVisible.set(false)" />
+}
+<a
+  class="skip-link"
+  href="#main"
+  [attr.tabindex]="welcomeVisible() ? -1 : null"
+  [attr.aria-hidden]="welcomeVisible() ? true : null"
+  >{{ p.text("Skip to content", "Vai al contenuto") }}</a
+>
+<div
+  class="workspace"
+  [inert]="welcomeVisible()"
+  (keydown.escape)="closeMenu()"
+>
   @if (menuOpen()) {
     <button
       class="sidebar-backdrop"
@@ -16,14 +27,6 @@
       ><span>{{ p.text("Michele’s workspace", "Lo spazio di Michele") }}</span
       ><app-icon name="chevron"
     /></a>
-    <div class="sidebar-intro">
-      <span>{{
-        p.text(
-          "A small corner of the internet.",
-          "Un piccolo angolo di internet."
-        )
-      }}</span>
-    </div>
     <p class="sidebar-label">{{ p.text("Portfolio", "Portfolio") }}</p>
     <nav
       id="workspace-navigation"
@@ -49,21 +52,13 @@
         rel="noopener noreferrer"
         ><app-icon name="github" />GitHub<app-icon name="arrow" /></a
       ><a
-        href="https://linkedin.com/in/michelegravagnone"
+        href="https://www.linkedin.com/in/michele-gravagnone/"
         target="_blank"
         rel="noopener noreferrer"
         ><app-icon name="person" />LinkedIn<app-icon name="arrow"
       /></a>
     </div>
     <div class="sidebar-bottom">
-      <p>
-        {{
-          p.text(
-            "Built with Angular. Kept simple.",
-            "Sviluppato in Angular. Con semplicità."
-          )
-        }}
-      </p>
       <button
         class="theme-button"
         type="button"
@@ -392,8 +387,8 @@
           <p>
             {{
               p.text(
-                "Kubernetes orchestration, health probes and resource boundaries. The next step is applying those ideas to an existing service, with a documented deploy and recovery process.",
-                "Orchestrazione Kubernetes, health probe e limiti di risorse. Il prossimo passo è applicare questi concetti a un servizio esistente, con processi di deployment e ripristino documentati."
+                "Going deeper into API design, authentication and background processing. I’m also exploring how to deploy and operate backend services on AWS, with infrastructure as code, CI/CD, monitoring and tested rollback procedures.",
+                "Approfondimento della progettazione di API, dell’autenticazione e dell’elaborazione in background. Sto inoltre esplorando come distribuire e gestire servizi backend su AWS, con infrastruttura come codice, CI/CD, monitoraggio e procedure di rollback verificate."
               )
             }}
           </p>
