@@ -35,9 +35,9 @@ export const PROJECTS = [
     descriptionIt:
       "Catalogo full-stack con accessi distinti: modelli pubblici, specifiche prestazionali disponibili solo con una sessione validata dal server.",
     notes:
-      "Express serves a vanilla HTML/CSS/JavaScript frontend and a typed API. Passwords use bcrypt, JWTs travel in httpOnly cookies and SQLite queries are parameterized. The rebuild replaces the original PHP backend.",
+      "Express serves a vanilla HTML/CSS/JavaScript frontend and a TypeScript API. Passwords use bcrypt, JWTs travel in httpOnly cookies and SQLite queries are parameterized. HTTP integration tests cover startup, catalog access and authentication; GitHub Actions runs the checks. Includes a free Render demo configuration that reseeds temporary SQLite storage at startup. Requires a Node host; no live deployment is claimed.",
     notesIt:
-      "Express serve un frontend HTML/CSS/JavaScript e API tipizzate. Password con bcrypt, JWT in cookie httpOnly e query SQLite parametrizzate. Il backend sostituisce la versione originale in PHP.",
+      "Express serve un frontend HTML/CSS/JavaScript e API in TypeScript. Password con bcrypt, JWT in cookie httpOnly e query SQLite parametrizzate. Test HTTP di integrazione coprono avvio, catalogo e autenticazione; GitHub Actions esegue i controlli. Include una configurazione demo gratuita per Render che ricrea il catalogo SQLite temporaneo a ogni avvio. Richiede hosting Node; nessun deployment live dichiarato.",
   },
   {
     number: "03",

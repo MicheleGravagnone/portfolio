@@ -4,26 +4,20 @@ import {
   DestroyRef,
   inject,
   signal,
-  viewChild,
 } from "@angular/core";
 import { PreferencesService } from "./core/preferences.service";
 import { ProjectsComponent } from "./sections/projects.component";
 import { IconComponent } from "./sections/icon.component";
-import { WelcomeComponent } from "./sections/welcome.component";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [ProjectsComponent, IconComponent, WelcomeComponent],
+  imports: [ProjectsComponent, IconComponent],
   templateUrl: "./app.component.html",
 })
 export class AppComponent implements AfterViewInit {
   readonly p = inject(PreferencesService);
-  readonly welcomeVisible = signal(
-    !matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
   readonly menuOpen = signal(false);
   readonly activeSection = signal("overview");
-  private readonly projectsView = viewChild(ProjectsComponent);
   readonly year = new Date().getFullYear();
   readonly navigation = [
     { id: "overview", icon: "page", en: "Overview", it: "Panoramica" },
@@ -66,20 +60,9 @@ export class AppComponent implements AfterViewInit {
       cancelAnimationFrame(frame);
     });
   }
-  openProject(id: string): void {
-    this.projectsView()?.category.set("all");
-    requestAnimationFrame(() => {
-      const project = document.getElementById(id);
-      if (project instanceof HTMLDetailsElement) {
-        project.open = true;
-        project.scrollIntoView({
-          behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-            ? "instant"
-            : "smooth",
-          block: "start",
-        });
-      }
-    });
+  openProject(): void {
+    const project = document.getElementById("wildlife-monitoring");
+    if (project instanceof HTMLDetailsElement) project.open = true;
   }
   closeMenu(): void {
     if (!this.menuOpen()) return;

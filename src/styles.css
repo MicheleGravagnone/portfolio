@@ -1564,160 +1564,36 @@ summary::-webkit-details-marker {
   cursor: progress;
 }
 
-html[data-welcome] {
-  overflow: hidden;
-}
-.welcome-screen {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  z-index: 1000;
-  display: grid;
-  place-items: center;
-  background: var(--bg);
-  color: var(--text);
-  opacity: 1;
-  transition: opacity 420ms ease;
-}
-.welcome-screen.welcome-leaving {
-  opacity: 0;
-  pointer-events: none;
-}
-.welcome-lockup {
-  --welcome-size: clamp(3.25rem, 7vw, 4.25rem);
-  position: relative;
-  display: grid;
-  justify-items: center;
-  transition: transform 420ms ease;
-}
-.welcome-mark {
-  display: inline-flex;
-  align-items: baseline;
-  justify-content: center;
-  font-family: "JetBrains Mono Nerd Font Mono", monospace;
-  font-size: var(--welcome-size);
-  font-style: normal;
-  font-weight: 400;
-  font-synthesis: none;
-  line-height: 1.4;
-  letter-spacing: -0.04em;
-  padding-inline-start: 0.12em;
-  transition: transform 420ms ease;
-}
-.welcome-leaving .welcome-lockup {
-  transform: translateY(-5px);
-}
-.welcome-character {
-  display: inline-block;
-  opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  animation: reveal-initial 220ms cubic-bezier(0.45, 0, 0.3, 1) both;
-}
-.welcome-character:nth-child(1) {
-  animation-delay: 90ms;
-}
-.welcome-character:nth-child(2) {
-  animation-delay: 210ms;
-}
-.welcome-character:nth-child(3) {
-  animation-delay: 330ms;
-}
-.welcome-character:nth-child(4) {
-  animation-delay: 450ms;
-}
-.welcome-loader {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  width: calc(var(--welcome-size) * 2 + 5px);
-  display: flex;
-  justify-content: space-between;
-  transform: translateX(-50%);
-  color: var(--muted);
-  animation: loader-arrive 240ms ease 720ms both;
-}
-.welcome-loader svg {
-  display: block;
-  width: 10px;
-  height: 14px;
-  stroke: currentColor;
-  stroke-width: 1.3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.18;
-  animation: loader-flow 1100ms ease-in-out 720ms infinite;
-}
-.welcome-loader svg:nth-child(2) {
-  animation-delay: 860ms;
-}
-.welcome-loader svg:nth-child(3) {
-  animation-delay: 1000ms;
-}
-.welcome-loader svg:nth-child(4) {
-  animation-delay: 1140ms;
-}
-@keyframes loader-arrive {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes loader-flow {
-  0%,
-  70%,
-  100% {
-    opacity: 0.18;
-  }
-  35% {
-    opacity: 0.85;
-  }
-}
-.welcome-skip {
-  position: absolute;
-  right: max(28px, env(safe-area-inset-right));
-  bottom: max(22px, env(safe-area-inset-bottom));
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  padding: 8px;
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-.welcome-skip:hover {
-  color: var(--text);
-}
-.welcome-skip span {
-  font-size: 0.875rem;
-}
-@keyframes reveal-initial {
-  to {
-    opacity: 1;
-    clip-path: inset(0);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .welcome-screen,
-  .welcome-mark,
-  .welcome-lockup {
-    transition: none;
-  }
-  .welcome-character {
-    animation: none;
-    opacity: 1;
-    clip-path: none;
-  }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .welcome-loader {
-    animation: none;
-  }
-  .welcome-loader svg {
-    animation: none;
-    opacity: 0.5;
-    transform: none;
-  }
+.profile-monogram {
+  font-family: "JetBrains Mono Nerd Font Mono", monospace;
+  font-size: 1.75rem;
+  letter-spacing: -0.08em;
+  margin-bottom: 23px;
+  color: var(--muted);
+}
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 0 0 24px;
+}
+.case-study {
+  margin: 0;
+}
+.case-study > div + div {
+  margin-top: 20px;
+}
+.case-study dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.case-study dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+.project-document .project-notes {
+  margin-top: 18px;
 }

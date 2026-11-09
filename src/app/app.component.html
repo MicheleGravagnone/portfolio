@@ -1,16 +1,10 @@
-@if (welcomeVisible()) {
-  <app-welcome (finished)="welcomeVisible.set(false)" />
-}
 <a
   class="skip-link"
   href="#main"
-  [attr.tabindex]="welcomeVisible() ? -1 : null"
-  [attr.aria-hidden]="welcomeVisible() ? true : null"
   >{{ p.text("Skip to content", "Vai al contenuto") }}</a
 >
 <div
   class="workspace"
-  [inert]="welcomeVisible()"
   (keydown.escape)="closeMenu()"
 >
   @if (menuOpen()) {
@@ -120,23 +114,13 @@
     </header>
     <main id="main" class="document">
       <section id="overview" class="profile-section">
-        <div class="page-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 56 56"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-          >
-            <path d="M13 8h25l7 7v33H11V8h2Z" />
-            <path d="M37 8v9h8M18 35V23l10 8 10-8v12" />
-          </svg>
-        </div>
+        <div class="profile-monogram" aria-hidden="true">m.g.</div>
         <h1>Michele Gravagnone</h1>
         <p class="page-subtitle">
           {{
             p.text(
-              "Backend developer. Curious about how systems fit together.",
-              "Sviluppatore backend. Curioso di come si connettono i sistemi."
+              "Backend Engineer · TypeScript, NestJS & PostgreSQL",
+              "Backend Engineer · TypeScript, NestJS e PostgreSQL"
             )
           }}
         </p>
@@ -167,11 +151,19 @@
             <dd>
               {{
                 p.text(
-                  "Backend roles · Relocation, hybrid & remote",
-                  "Ruoli backend · Trasferimento, ibrido e remoto"
+                  "Internships in Poland during my studies. Full-time roles after graduation in June 2028.",
+                  "Stage in Polonia durante gli studi. Ruoli a tempo pieno dopo la laurea a giugno 2028."
                 )
               }}
             </dd>
+          </div>
+          <div>
+            <dt><app-icon name="pin" />{{ p.text("Location", "Dove sono") }}</dt>
+            <dd>{{ p.text("Łódź, Poland", "Łódź, Polonia") }}</dd>
+          </div>
+          <div>
+            <dt><app-icon name="book" />{{ p.text("Graduation", "Laurea prevista") }}</dt>
+            <dd>{{ p.text("Expected June 2028", "Prevista a giugno 2028") }}</dd>
           </div>
           <div>
             <dt><app-icon name="mail" />{{ p.text("Email", "Email") }}</dt>
@@ -182,14 +174,18 @@
             </dd>
           </div>
         </dl>
+        <div class="profile-actions">
+          <a class="inline-link" href="mailto:michelegravagnone@gmail.com"><app-icon name="mail" />{{ p.text("Contact", "Contatti") }}</a>
+          <a class="inline-link" href="https://github.com/MicheleGravagnone" target="_blank" rel="noopener noreferrer"><app-icon name="github" />GitHub<app-icon name="arrow" /></a>
+        </div>
         <div class="intro-note">
           <app-icon name="page" />
           <div>
             <p>
               {{
                 p.text(
-                  "Hi, I’m Michele. I build APIs, model data and connect services. This is a working collection of my projects, the decisions behind them and what I’m learning along the way.",
-                  "Ciao, sono Michele. Sviluppo API, modello dati e connetto servizi. Qui raccolgo i miei progetti, le scelte che li guidano e quello che imparo lungo il percorso."
+                  "Computer Engineering graduate and MSc student with internship experience building API orchestration services. I build backend APIs with clear service boundaries, reliable data models and database-backed tests.",
+                  "Laureato in Ingegneria Informatica e studente magistrale con esperienza di tirocinio nello sviluppo di servizi di orchestrazione API. Sviluppo API backend con responsabilità ben definite, modelli dati affidabili e test con database."
                 )
               }}
             </p>
@@ -201,7 +197,7 @@
           }}</span
           ><a
             href="#wildlife-monitoring"
-            (click)="openProject('wildlife-monitoring')"
+            (click)="openProject()"
             >Wildlife Monitor <app-icon name="arrow" /></a
           ><span>{{
             p.text(
@@ -249,8 +245,8 @@
             <p>
               {{
                 p.text(
-                  "Developed a NestJS and TypeScript backend prototype for Q01: an MCP-based orchestration layer that routes client requests to the platform’s business and DevOps microservices through a single API entry point.",
-                  "Sviluppo di un prototipo backend in NestJS e TypeScript per Q01: un livello di orchestrazione basato su MCP che instrada le richieste dei client verso i microservizi applicativi e DevOps della piattaforma tramite un unico punto di accesso API."
+                  "Built a NestJS and TypeScript orchestration backend for Q01 and demonstrated an end-to-end microservice publish-and-deploy flow.",
+                  "Realizzazione di un backend di orchestrazione in NestJS e TypeScript per Q01, con dimostrazione del flusso completo di pubblicazione e deployment di un microservizio."
                 )
               }}
             </p>
@@ -258,28 +254,31 @@
               <li>
                 {{
                   p.text(
-                    "Separated REST controllers, orchestration and domain integrations; defined typed DTOs, request validation and Swagger API contracts.",
-                    "Separazione tra controller REST, orchestrazione e integrazioni di dominio; definizione di DTO tipizzati, validazione delle richieste e contratti API documentati con Swagger."
+                    "Separated request validation, orchestration and Q01 integrations behind a single MCP API entry point. Defined typed DTOs and Swagger contracts so clients could invoke platform operations without calling each underlying service directly.",
+                    "Separazione tra validazione delle richieste, orchestrazione e integrazioni Q01 dietro un unico punto di accesso API MCP. Definizione di DTO tipizzati e contratti Swagger per invocare le operazioni della piattaforma senza chiamare direttamente ogni servizio sottostante."
                   )
                 }}
               </li>
               <li>
                 {{
                   p.text(
-                    "Built a metadata-driven tool registry and integrated Redis-backed context management to resolve operations and maintain execution state.",
-                    "Realizzazione di un registry di tool basato su metadati e integrazione della gestione del contesto con Redis, per risolvere le operazioni e mantenere lo stato di esecuzione."
+                    "Implemented a metadata-driven tool registry with deterministic keyword scoring for operation discovery, plus Redis-backed execution context. Kept tool selection separate from the services that execute each operation.",
+                    "Implementazione di un registry di tool basato su metadati con punteggi deterministici sulle parole chiave per individuare le operazioni e gestione del contesto di esecuzione con Redis. Separazione tra selezione dei tool e servizi responsabili dell’esecuzione."
                   )
                 }}
               </li>
               <li>
                 {{
                   p.text(
-                    "Integrated Q01’s authenticated publish/deploy APIs with payload mapping, HTTP timeouts and consistent success/error responses. Verified the end-to-end deployment flow using cURL and server logs.",
-                    "Integrazione delle API autenticate di publish/deploy di Q01 con mapping dei payload, timeout HTTP e risposte uniformi di successo ed errore. Verifica del flusso di deployment end-to-end tramite cURL e log del server."
+                    "Integrated authenticated Q01 DevOps APIs with explicit payload mapping and HTTP timeouts. Normalized success responses and handled application errors reported inside API responses, giving the orchestrator a consistent result contract.",
+                    "Integrazione delle API DevOps autenticate di Q01 con mapping esplicito dei payload e timeout HTTP. Normalizzazione delle risposte di successo e gestione degli errori applicativi contenuti nelle risposte API, per fornire all’orchestratore un contratto di risultato uniforme."
                   )
                 }}
               </li>
             </ul>
+            <p class="entry-context">
+              {{ p.text("Thesis prototype validated through a documented deployment scenario. Advanced authorization policies and resilience mechanisms were outside its scope.", "Prototipo di tesi validato tramite uno scenario di deployment documentato. Policy di autorizzazione avanzate e meccanismi evoluti di resilienza erano fuori ambito.") }}
+            </p>
             <p class="entry-stack">
               NestJS · TypeScript · REST APIs · Redis · Swagger · Docker
             </p>
@@ -325,7 +324,7 @@
           <div class="education-list">
             <div>
               <span class="education-type">{{
-                p.text("In progress", "In corso")
+                p.text("Expected June 2028", "Laurea prevista a giugno 2028")
               }}</span>
               <h3>MSc · CSIT</h3>
               <p>Lodz University of Technology</p>
