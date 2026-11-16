@@ -39,7 +39,7 @@ import { IconComponent } from "./icon.component";
             </div>
             <div>
               <dt>{{ p.text("My contribution", "Il mio contributo") }}</dt>
-              <dd>{{ p.text("Built the NestJS API and PostgreSQL data model with Prisma: resource endpoints, request validation, Swagger documentation and versioned migrations. Added unit tests and database-backed HTTP tests in GitHub Actions.", "Realizzazione delle API NestJS e del modello PostgreSQL con Prisma: endpoint, validazione delle richieste, documentazione Swagger e migrazioni versionate. Aggiunta di test unitari e test HTTP con database in GitHub Actions.") }}</dd>
+            <dd>{{ p.text("Built the NestJS API and PostgreSQL data model with Prisma: 9 REST endpoints, strict DTO validation, Swagger documentation and versioned migrations. Added unit tests and isolated PostgreSQL end-to-end tests in GitHub Actions.", "Realizzazione delle API NestJS e del modello PostgreSQL con Prisma: 9 endpoint REST, validazione rigorosa dei DTO, documentazione Swagger e migrazioni versionate. Aggiunta di test unitari e test end-to-end isolati con PostgreSQL in GitHub Actions.") }}</dd>
             </div>
             <div>
               <dt>{{ p.text("Key engineering decision", "Scelta di progettazione centrale") }}</dt>
@@ -49,7 +49,7 @@ import { IconComponent } from "./icon.component";
           <div class="inline-model" [attr.aria-label]="p.text('One sensor has many deployments; each deployment has many detections.', 'Un sensore ha più installazioni; ogni installazione ha più rilevamenti.')">
             <code>Sensor</code><span>1 → n</span><code>Deployment</code><span>1 → n</span><code>Detection</code>
           </div>
-          <p class="project-notes">{{ p.text("Still in development: authentication, public response filtering, idempotent ingestion and pagination are planned. Device capture and cloud inference belong to the wider research project.", "Ancora in sviluppo: autenticazione, viste pubbliche, ingestione idempotente e paginazione sono previsti. Acquisizione e inferenza cloud appartengono al progetto di ricerca più ampio.") }}</p>
+          <p class="project-notes">{{ p.text("Ingestion is idempotent to handle conflicting sensor uploads. Planned next: a RabbitMQ queue between the backend and AI inference service, decoupling sensor uploads from asynchronous classification. Authentication and public response filtering also remain planned.", "L’ingestione è idempotente per gestire upload dei sensori in conflitto. Prossimo passo previsto: una coda RabbitMQ tra il backend e il servizio di inferenza AI, per separare gli upload dei sensori dalla classificazione asincrona. Anche autenticazione e filtri delle risposte pubbliche restano pianificati.") }}</p>
         } @else {
           <p class="project-description">{{ p.text(project.description, project.descriptionIt) }}</p>
           <p class="project-notes">{{ p.text(project.notes, project.notesIt) }}</p>

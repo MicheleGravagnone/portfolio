@@ -15,9 +15,9 @@ export const PROJECTS = [
     descriptionIt:
       "API per le osservazioni della fauna nei parchi di Łódź. Sensori fisici, installazioni e rilevamenti sono modellati separatamente: spostare un dispositivo non modifica la storia delle osservazioni.",
     notes:
-      "Implemented: resource endpoints, validation, Swagger, versioned migrations, unit tests and database-backed HTTP tests in CI. Authentication, public response filtering, idempotent ingestion and pagination are planned. Device capture and cloud inference belong to the wider project, not this backend.",
+      "Implemented 9 REST endpoints with strict DTO validation, Swagger documentation, versioned migrations and Vitest unit tests. PostgreSQL end-to-end tests run in GitHub Actions. Ingestion is idempotent to handle conflicting sensor uploads. Planned next: RabbitMQ between the backend and AI inference service to decouple uploads from asynchronous classification. Authentication and public response filtering also remain planned.",
     notesIt:
-      "Implementati: endpoint, validazione, Swagger, migrazioni, test unitari e test HTTP con database in CI. Autenticazione, viste pubbliche, ingestione idempotente e paginazione sono previsti. Acquisizione e inferenza cloud appartengono al progetto più ampio.",
+      "Implementati 9 endpoint REST con validazione rigorosa dei DTO, documentazione Swagger, migrazioni versionate e test unitari Vitest. I test end-to-end con PostgreSQL vengono eseguiti in GitHub Actions. L’ingestione è idempotente per gestire upload dei sensori in conflitto. Prossimo passo previsto: RabbitMQ tra backend e servizio di inferenza AI per separare gli upload dalla classificazione asincrona. Anche autenticazione e filtri delle risposte pubbliche restano pianificati.",
   },
   {
     number: "02",
@@ -31,9 +31,9 @@ export const PROJECTS = [
     statusIt: "Repository pubblico",
     tech: "Node.js / Express / TypeScript / SQLite / Zod / JWT",
     description:
-      "A full-stack catalog with a clear access boundary: browse the models freely; retrieve performance specifications only with a valid server-side session.",
+      "A full-stack catalog of 9 cars and 7 REST endpoints with a clear access boundary: browse the models freely; retrieve performance specifications only with a valid server-side session.",
     descriptionIt:
-      "Catalogo full-stack con accessi distinti: modelli pubblici, specifiche prestazionali disponibili solo con una sessione validata dal server.",
+      "Catalogo full-stack di 9 auto e 7 endpoint REST con accessi distinti: modelli pubblici, specifiche prestazionali disponibili solo con una sessione validata dal server.",
     notes:
       "Express serves a vanilla HTML/CSS/JavaScript frontend and a TypeScript API. Passwords use bcrypt, JWTs travel in httpOnly cookies and SQLite queries are parameterized. HTTP integration tests cover startup, catalog access and authentication; GitHub Actions runs the checks. Includes a free Render demo configuration that reseeds temporary SQLite storage at startup. Requires a Node host; no live deployment is claimed.",
     notesIt:

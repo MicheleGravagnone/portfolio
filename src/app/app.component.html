@@ -177,7 +177,7 @@
         <div class="profile-actions">
           <a class="inline-link" href="mailto:michelegravagnone@gmail.com"><app-icon name="mail" />{{ p.text("Contact", "Contatti") }}</a>
           <a class="inline-link" href="https://github.com/MicheleGravagnone" target="_blank" rel="noopener noreferrer"><app-icon name="github" />GitHub<app-icon name="arrow" /></a>
-          <a class="inline-link" href="documents/michele-gravagnone-cv.pdf" download="Michele-Gravagnone-CV.pdf"><app-icon name="download" />{{ p.text("Download CV", "Scarica CV") }}</a>
+          <a class="inline-link" class="inline-link cv-link" href="documents/michele-gravagnone-cv.pdf" download="Michele-Gravagnone-CV.pdf"><app-icon name="download" />{{ p.text("Download CV", "Scarica CV") }}</a>
         </div>
         <div class="intro-note">
           <app-icon name="page" />
@@ -246,8 +246,8 @@
             <p>
               {{
                 p.text(
-                  "Built a NestJS and TypeScript orchestration backend for Q01 and demonstrated an end-to-end microservice publish-and-deploy flow.",
-                  "Realizzazione di un backend di orchestrazione in NestJS e TypeScript per Q01, con dimostrazione del flusso completo di pubblicazione e deployment di un microservizio."
+                  "Built a NestJS and TypeScript orchestration gateway for Q01’s 25+ microservices and demonstrated a complete publish-and-deploy flow, reducing the multi-step UI workflow to one authenticated API call.",
+                  "Realizzazione di un gateway di orchestrazione in NestJS e TypeScript per gli oltre 25 microservizi di Q01 e dimostrazione del flusso completo di pubblicazione e deployment, riducendo il flusso multi-step dell’interfaccia a una sola chiamata API autenticata."
                 )
               }}
             </p>
@@ -263,8 +263,8 @@
               <li>
                 {{
                   p.text(
-                    "Implemented a metadata-driven tool registry with deterministic keyword scoring for operation discovery, plus Redis-backed execution context. Kept tool selection separate from the services that execute each operation.",
-                    "Implementazione di un registry di tool basato su metadati con punteggi deterministici sulle parole chiave per individuare le operazioni e gestione del contesto di esecuzione con Redis. Separazione tra selezione dei tool e servizi responsabili dell’esecuzione."
+                    "Implemented a metadata-driven registry routing 17 MCP operations in English and Italian, with weighted keyword scoring and Redis-backed session context.",
+                    "Implementazione di un registry basato su metadati per instradare 17 operazioni MCP in italiano e inglese, con punteggio ponderato delle parole chiave e contesto di sessione gestito con Redis."
                   )
                 }}
               </li>
