@@ -1,6 +1,26 @@
 export const PROJECTS = [
   {
     number: "01",
+    slug: "vero-autonomous-cfo",
+    art: "api",
+    category: "backend",
+    title: "Vero Autonomous CFO",
+    context: "Collabothon 2026 · Commerzbank × Red Hat challenge · team of 6",
+    contextIt: "Collabothon 2026 · sfida Commerzbank × Red Hat · team di 6",
+    status: "Public repository",
+    statusIt: "Repository pubblico",
+    tech: "Python / FastAPI / Pydantic / SQLModel / PostgreSQL / pytest / Red Hat OpenShift AI / vLLM",
+    description:
+      "An AI finance assistant for small businesses: it forecasts 13 weeks of cash and checks every recurring cost against contracts. The model proposes; a deterministic backend computes every number and decides what can run alone, what needs the owner's approval and what is not allowed.",
+    descriptionIt:
+      "Assistente finanziario AI per piccole imprese: prevede la liquidità delle 13 settimane successive e verifica ogni costo ricorrente rispetto ai contratti. Il modello propone; un backend deterministico calcola ogni numero e decide cosa può essere eseguito in autonomia, cosa richiede l’approvazione del titolare e cosa non è consentito.",
+    notes:
+      "I built the FastAPI backend: a 91-day cash forecast from a real bank statement (backtest error 3%), a policy engine for the owner's rules, a formula engine, and a grounding layer that re-checks the agent's evidence against real tool results before the backend sets the final label. If the agent fails, a scripted investigation reaches the same result. Includes a SHA-256 hash-chained activity log, idempotency keys, in-memory and PostgreSQL storage, and 554 tests with two end-to-end release gates. Payments and letters are simulated.",
+    notesIt:
+      "Ho realizzato il backend FastAPI: previsione di liquidità a 91 giorni da un estratto conto reale (errore di backtest del 3%), un motore di regole per i limiti del titolare, un motore di calcolo e un livello di verifica che confronta le prove dell’agente con i risultati reali degli strumenti prima che sia il backend a stabilire l’esito. Se l’agente fallisce, un’indagine con passi prestabiliti raggiunge lo stesso risultato. Include un registro attività con catena di hash SHA-256, chiavi di idempotenza, archiviazione in memoria e PostgreSQL e 554 test con due verifiche end-to-end di rilascio. Pagamenti e lettere sono simulati.",
+  },
+  {
+    number: "02",
     slug: "wildlife-monitoring",
     art: "wildlife",
     category: "backend",
@@ -20,7 +40,7 @@ export const PROJECTS = [
       "Implementati 9 endpoint REST con validazione rigorosa dei DTO, documentazione Swagger, migrazioni versionate e test unitari Vitest. I test end-to-end con PostgreSQL vengono eseguiti in GitHub Actions. L’ingestione è idempotente per gestire upload dei sensori in conflitto. Prossimo passo previsto: RabbitMQ tra backend e servizio di inferenza AI per separare gli upload dalla classificazione asincrona. Anche autenticazione e filtri delle risposte pubbliche restano pianificati.",
   },
   {
-    number: "02",
+    number: "03",
     slug: "car-website",
     art: "api",
     category: "backend",
@@ -40,7 +60,7 @@ export const PROJECTS = [
       "Express serve un frontend HTML/CSS/JavaScript e API in TypeScript. Password con bcrypt, JWT in cookie httpOnly e query SQLite parametrizzate. Test HTTP di integrazione coprono avvio, catalogo e autenticazione; GitHub Actions esegue i controlli. Include una configurazione demo gratuita per Render che ricrea il catalogo SQLite temporaneo a ogni avvio. Richiede hosting Node; nessun deployment live dichiarato.",
   },
   {
-    number: "03",
+    number: "04",
     slug: "task-tracker-cli",
     art: "cli",
     category: "tooling",
